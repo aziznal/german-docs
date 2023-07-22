@@ -1,8 +1,5 @@
 import "./globals.css";
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
-
-const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "German Docs",
@@ -19,7 +16,7 @@ export default function RootLayout({
       lang="en"
       className="h-full"
     >
-      <body className={`${inter.className} h-full`}>{children}</body>
+      <body className={`h-full font-sans`}>{children}</body>
     </html>
   );
 }
