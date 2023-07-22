@@ -7,7 +7,10 @@
   --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255;
 
-  --left-sidebar-width: 300px;
+  --header-height: 70px;
+
+  --left-sidebar-width: 250px;
+  --left-sidebar-height: calc(100dvh - var(--header-height));
 }
 
 @media (prefers-color-scheme: dark) {
@@ -20,6 +23,4 @@
 
 body {
   color: rgb(var(--foreground-rgb));
-
-  @apply bg-white h-screen overflow-hidden;
 }
