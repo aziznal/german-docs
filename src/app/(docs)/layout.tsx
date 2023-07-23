@@ -1,16 +1,35 @@
-import { PropsWithChildren } from "react";
+"use client";
+
+import { PropsWithChildren, useEffect, useState } from "react";
 import Header from "@/components/header";
 import Footer from "@/components/footer";
 import LeftSidebar from "@/components/left-sidebar";
 import RightSidebar from "@/components/right-sidebar";
 
 export default function DocsLayout({ children }: PropsWithChildren) {
+  const [isLeftSidebarOpen, setIsLeftSidebarOpen] = useState(true);
+
+  // close self when screen size is less that lg
+  useEffect(() => {
+    function changeToggleState() {
+      setIsLeftSidebarOpen(window.innerWidth > 1024);
+    }
+
+    window.addEventListener("resize", (_event) => changeToggleState());
+
+    return () =>
+      window.removeEventListener("resize", (_event) => changeToggleState());
+  });
+
   return (
     <div className="flex min-h-full flex-col">
-      <Header />
+      <Header
+        isLeftSidebarOpen={isLeftSidebarOpen}
+        toggleSidebar={() => setIsLeftSidebarOpen((val) => !val)}
+      />
 
       <div className="flex grow">
-        <LeftSidebar />
+        <LeftSidebar isOpen={isLeftSidebarOpen} />
 
         <div className="flex grow flex-col">
           <div className="flex grow">

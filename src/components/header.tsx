@@ -1,11 +1,16 @@
 import Link from "next/link";
-import { LucideGithub, Sandwich } from "lucide-react";
+import { LucideGithub, Menu, Sandwich } from "lucide-react";
 import Image from "next/image";
 import { forwardRef } from "react";
 import { cn } from "@/lib/utils";
 
-const Header = forwardRef<HTMLElement, React.HTMLAttributes<HTMLElement>>(
-  ({ className, ...props }, ref) => {
+type HeaderProps = React.HTMLAttributes<HTMLElement> & {
+  isLeftSidebarOpen: boolean;
+  toggleSidebar: () => void;
+};
+
+const Header = forwardRef<HTMLElement, HeaderProps>(
+  ({ className, toggleSidebar, isLeftSidebarOpen, ...props }, ref) => {
     return (
       <header
         {...props}
@@ -15,8 +20,14 @@ const Header = forwardRef<HTMLElement, React.HTMLAttributes<HTMLElement>>(
           className,
         )}
       >
-        <div className="flex h-full cursor-pointer items-center justify-center px-6 transition hover:bg-neutral-800 lg:w-[length:var(--left-sidebar-width)] lg:px-0">
-          <Sandwich size={36} />
+        <div
+          className={cn(
+            `flex h-full w-[80px] cursor-pointer items-center justify-center px-6 transition-all duration-200 hover:bg-neutral-800`,
+            isLeftSidebarOpen && "lg:w-[length:var(--left-sidebar-width)]",
+          )}
+          onClick={toggleSidebar}
+        >
+          <Menu size={32} />
         </div>
 
         <div className="flex grow items-center justify-end gap-4">
