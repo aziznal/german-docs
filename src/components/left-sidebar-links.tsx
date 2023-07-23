@@ -21,7 +21,7 @@ export default async function LeftSidebarLinks() {
   return (
     <>
       <HighlightedLink
-        className="text-sm"
+        className="text-sm font-bold"
         href="/introduction"
       >
         INTRODUCTION
