@@ -21,9 +21,7 @@ export default function HighlightedLink({
   children,
   className,
 }: HighlightedLinkProps) {
-  const active = href === usePathname().replace(/\//, "");
-
-  console.log(href, usePathname().replace(/\//, ""), active);
+  const active = href.includes(usePathname());
 
   return (
     <Link

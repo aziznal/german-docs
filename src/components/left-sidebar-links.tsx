@@ -1,4 +1,4 @@
-import { getNavLinks } from "@/lib/markdown.utils";
+import { getMarkdownListings } from "@/lib/markdown.utils";
 import {
   Accordion,
   AccordionContent,
@@ -15,29 +15,40 @@ function formatLink(link: string): string {
     .join(" ");
 }
 
-export default function LeftSidebarLinks() {
-  const listings = getNavLinks();
+export default async function LeftSidebarLinks() {
+  const listings = await getMarkdownListings();
 
   return (
-    <Accordion
-      type="multiple"
-      className="mt-3 text-sm"
-    >
-      {listings.map((listing) => (
-        <AccordionItem value={listing.name}>
-          <AccordionTrigger className="uppercase">
-            {formatLink(listing.name)}
-          </AccordionTrigger>
+    <>
+      <HighlightedLink
+        className="text-sm"
+        href="/introduction"
+      >
+        INTRODUCTION
+      </HighlightedLink>
 
-          <AccordionContent>
-            <ul className="flex flex-col gap-2 pl-4 text-xs font-normal">
-              {listing.files.map((file) => (
-                <HighlightedLink href={file}>{formatLink(file)}</HighlightedLink>
-              ))}
-            </ul>
-          </AccordionContent>
-        </AccordionItem>
-      ))}
-    </Accordion>
+      <Accordion
+        type="multiple"
+        className="mt-3 text-sm"
+      >
+        {listings.map((listing) => (
+          <AccordionItem value={listing.name}>
+            <AccordionTrigger className="uppercase">
+              {formatLink(listing.name)}
+            </AccordionTrigger>
+
+            <AccordionContent>
+              <ul className="flex flex-col gap-2 pl-4 text-xs font-normal">
+                {listing.files?.map((file) => (
+                  <HighlightedLink href={file.href}>
+                    {formatLink(file.name)}
+                  </HighlightedLink>
+                ))}
+              </ul>
+            </AccordionContent>
+          </AccordionItem>
+        ))}
+      </Accordion>
+    </>
   );
 }

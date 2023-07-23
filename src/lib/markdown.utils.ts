@@ -1,123 +1,73 @@
-import fs from "fs";
+import * as fsPromises from "fs/promises";
+
 import path from "path";
 
 const MARKDOWN_FOLDER_PATH = path.join(process.cwd(), "markdown");
 
-export type BetterListing = {
+export type FileListing = {
   name: string;
-  files: {
-    name: string;
-    path: string;
-    href: string;
-  }[];
+  href: string;
 };
 
-export type Listing = {
+export type FolderListing = {
   name: string;
-  path: string;
-  type: "dir" | "markdown";
-};
-
-export type FolderListing = Listing & {
-  type: "dir";
-};
-
-export type FileListing = Listing & {
-  type: "markdown";
-};
-
-export type NavLink = {
-  name: string;
-  files: string[];
+  files?: FileListing[];
 };
 
 /** Returns a list of folder names within given path */
-export function getDirectoryNames(path: string): string[] {
-  return fs
-    .readdirSync(path, { withFileTypes: true })
+export async function getDirectoryNames(path: string): Promise<string[]> {
+  const files = await fsPromises.readdir(path, { withFileTypes: true });
+
+  return files
     .filter((dirent) => dirent.isDirectory())
     .map((dirent) => dirent.name);
 }
 
 /** Returns a list of .md file names within given path */
-export function getMarkdownFileNames(path: string): string[] {
-  return fs
-    .readdirSync(path, { withFileTypes: true })
+export async function getMarkdownFileNames(path: string): Promise<string[]> {
+  const files = await fsPromises.readdir(path, { withFileTypes: true });
+
+  return files
     .filter((dirent) => dirent.isFile() && dirent.name.endsWith(".md"))
     .map((dirent) => dirent.name);
 }
 
 /** Recursively returns all markdown files available in application  */
-export function getMarkdownListings(): FileListing[] {
-  const allFolders: FolderListing[] = getDirectoryNames(
-    MARKDOWN_FOLDER_PATH,
+export async function getMarkdownListings(): Promise<FolderListing[]> {
+  const folderListings: FolderListing[] = (
+    await getDirectoryNames(MARKDOWN_FOLDER_PATH)
   ).map((dirName) => {
     return {
       name: dirName,
-      path: `${MARKDOWN_FOLDER_PATH}/${dirName}`,
-      type: "dir",
-    };
+    } satisfies FolderListing;
   });
 
-  const allFiles: FileListing[] = [];
+  await Promise.all(
+    folderListings.map(async (folderListing) => {
+      const markdownFiles = await getMarkdownFileNames(
+        `${MARKDOWN_FOLDER_PATH}/${folderListing.name}`,
+      );
 
-  allFiles.push(
-    ...getMarkdownFileNames(MARKDOWN_FOLDER_PATH).map((fileName) => {
-      return {
-        name: fileName.replace(".md", ""),
-        path: `${MARKDOWN_FOLDER_PATH}/${fileName}`,
-        type: "markdown" as const,
-      };
+      folderListing.files = markdownFiles.map((fileName) => {
+        return {
+          name: fileName.replace(".md", ""),
+          href: `/${folderListing.name}/${fileName.replace(".md", "")}`,
+        } satisfies FileListing;
+      });
     }),
   );
 
-  allFolders.forEach((folder) => {
-    const markdownFiles = getMarkdownFileNames(folder.path);
-
-    allFiles.push(
-      ...markdownFiles.map((fileName) => {
-        return {
-          name: fileName.replace(".md", ""),
-          path: `${folder.path}/${fileName}`,
-          type: "markdown" as const,
-        };
-      }),
-    );
-  });
-
-  return allFiles;
-}
-
-/** Returns a list of entities representing folders and the files inside them as a list */
-export function getNavLinks(): NavLink[] {
-  const allFolders: FolderListing[] = getDirectoryNames(
-    MARKDOWN_FOLDER_PATH,
-  ).map((dirName) => {
-    return {
-      name: dirName,
-      path: `${MARKDOWN_FOLDER_PATH}/${dirName}`,
-      type: "dir",
-    };
-  });
-
-  const navLinks: NavLink[] = allFolders.map((folder) => {
-    return {
-      name: folder.name,
-      files: getMarkdownFileNames(folder.path).map((fileName) =>
-        fileName.replace(".md", ""),
-      ),
-    };
-  });
-
-  return navLinks;
+  return folderListings;
 }
 
 /** Returns the contents of the file with the given path */
-export function getMarkdownContent(path: string): string | null {
-  const listings = getMarkdownListings();
-  const markdownFile = listings.find((listing) => listing.name === path);
+export async function getMarkdownContent(path: string): Promise<string | null> {
+  // const listings = getMarkdownListings();
+  // const markdownFile = listings.find((listing) => listing.name === path);
+  //
+  // if (!markdownFile) return null;
 
-  if (!markdownFile) return null;
-
-  return fs.readFileSync(`${markdownFile.path}`).toString();
+  return (
+    await fsPromises.readFile(`${MARKDOWN_FOLDER_PATH}/${path}.md`)
+  ).toString();
 }
