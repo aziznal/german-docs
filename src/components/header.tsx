@@ -1,16 +1,18 @@
+"use client";
+
 import Link from "next/link";
 import { LucideGithub, Menu } from "lucide-react";
 import Image from "next/image";
 import { forwardRef } from "react";
 import { cn } from "@/lib/utils";
+import { useLeftSidebarState } from "@/providers/left-sidebar-provider";
 
-type HeaderProps = React.HTMLAttributes<HTMLElement> & {
-  isLeftSidebarOpen: boolean;
-  toggleSidebar: () => void;
-};
+type HeaderProps = React.HTMLAttributes<HTMLElement> & {};
 
 const Header = forwardRef<HTMLElement, HeaderProps>(
-  ({ className, toggleSidebar, isLeftSidebarOpen, ...props }, ref) => {
+  ({ className, ...props }, ref) => {
+    const { isLeftSidebarOpen, toggleSidebar } = useLeftSidebarState();
+
     return (
       <header
         {...props}

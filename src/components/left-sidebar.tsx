@@ -1,21 +1,15 @@
 "use client";
 
 import { forwardRef } from "react";
-import HighlightedLink from "@/components/ui/highlighted-link";
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
 import { cn } from "@/lib/utils";
+import { useLeftSidebarState } from "@/providers/left-sidebar-provider";
 
-type LeftSidebarProps = React.HTMLAttributes<HTMLDivElement> & {
-  isOpen: boolean;
-};
+type LeftSidebarProps = React.HTMLAttributes<HTMLDivElement> & {};
 
 const LeftSidebar = forwardRef<HTMLDivElement, LeftSidebarProps>(
-  ({ className, isOpen, ...props }, ref) => {
+  ({ className, children, ...props }, ref) => {
+    const { isLeftSidebarOpen: isOpen } = useLeftSidebarState();
+
     return (
       <div
         {...props}
@@ -27,29 +21,7 @@ const LeftSidebar = forwardRef<HTMLDivElement, LeftSidebarProps>(
           className,
         )}
       >
-        <HighlightedLink
-          href="/introduction"
-          className="text-sm"
-        >
-          INTRODUCTION
-        </HighlightedLink>
-
-        <Accordion
-          type="multiple"
-          className="mt-3 text-sm"
-        >
-          <AccordionItem value="overview">
-            <AccordionTrigger>OVERVIEW</AccordionTrigger>
-
-            <AccordionContent>
-              <ul className="flex flex-col gap-2 pl-4 text-xs font-normal">
-                <HighlightedLink href="/foo">Foo</HighlightedLink>
-                <HighlightedLink href="/bar">Bar</HighlightedLink>
-                <HighlightedLink href="/baz">Baz</HighlightedLink>
-              </ul>
-            </AccordionContent>
-          </AccordionItem>
-        </Accordion>
+        {children}
       </div>
     );
   },

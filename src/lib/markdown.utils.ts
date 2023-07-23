@@ -3,21 +3,35 @@ import path from "path";
 
 const MARKDOWN_FOLDER_PATH = path.join(process.cwd(), "markdown");
 
-type Listing = {
+export type BetterListing = {
+  name: string;
+  files: {
+    name: string;
+    path: string;
+    href: string;
+  }[];
+};
+
+export type Listing = {
   name: string;
   path: string;
   type: "dir" | "markdown";
 };
 
-type FolderListing = Listing & {
+export type FolderListing = Listing & {
   type: "dir";
 };
 
-type FileListing = Listing & {
+export type FileListing = Listing & {
   type: "markdown";
 };
 
-/** Returns a list of folder names within givne path */
+export type NavLink = {
+  name: string;
+  files: string[];
+};
+
+/** Returns a list of folder names within given path */
 export function getDirectoryNames(path: string): string[] {
   return fs
     .readdirSync(path, { withFileTypes: true })
@@ -72,6 +86,30 @@ export function getMarkdownListings(): FileListing[] {
   });
 
   return allFiles;
+}
+
+/** Returns a list of entities representing folders and the files inside them as a list */
+export function getNavLinks(): NavLink[] {
+  const allFolders: FolderListing[] = getDirectoryNames(
+    MARKDOWN_FOLDER_PATH,
+  ).map((dirName) => {
+    return {
+      name: dirName,
+      path: `${MARKDOWN_FOLDER_PATH}/${dirName}`,
+      type: "dir",
+    };
+  });
+
+  const navLinks: NavLink[] = allFolders.map((folder) => {
+    return {
+      name: folder.name,
+      files: getMarkdownFileNames(folder.path).map((fileName) =>
+        fileName.replace(".md", ""),
+      ),
+    };
+  });
+
+  return navLinks;
 }
 
 /** Returns the contents of the file with the given path */
