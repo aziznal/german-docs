@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { LucideGithub, Menu, Sandwich } from "lucide-react";
+import { LucideGithub, Menu } from "lucide-react";
 import Image from "next/image";
 import { forwardRef } from "react";
 import { cn } from "@/lib/utils";

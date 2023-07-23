@@ -27,8 +27,8 @@ export default function HighlightedLink({
     <Link
       href={href}
       className={`${cn(
-        clsx(active && "font-semibold text-red-500"),
-        "hover:font-semibold hover:text-red-500",
+        clsx(active && "font-semibold text-rose-600"),
+        "hover:font-semibold hover:text-rose-600",
         className,
       )}`}
       prefetch={true}
