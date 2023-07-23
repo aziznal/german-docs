@@ -9,6 +9,11 @@ import RightSidebar from "@/components/right-sidebar";
 export default function DocsLayout({ children }: PropsWithChildren) {
   const [isLeftSidebarOpen, setIsLeftSidebarOpen] = useState(true);
 
+  // check screen size on first load to determine whether to keep sidebar open
+  useEffect(() => {
+    setIsLeftSidebarOpen(window.innerWidth > 1024);
+  }, []);
+
   // close self when screen size is less that lg
   useEffect(() => {
     function changeToggleState() {
