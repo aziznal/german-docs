@@ -32,7 +32,10 @@ export default async function LeftSidebarLinks() {
         className="mt-3 text-sm"
       >
         {listings.map((listing) => (
-          <AccordionItem value={listing.name}>
+          <AccordionItem
+            value={listing.name}
+            key={listing.name}
+          >
             <AccordionTrigger className="uppercase">
               {formatLink(listing.name)}
             </AccordionTrigger>
@@ -40,7 +43,10 @@ export default async function LeftSidebarLinks() {
             <AccordionContent>
               <ul className="flex flex-col gap-2 pl-4 text-xs font-normal">
                 {listing.files?.map((file) => (
-                  <HighlightedLink href={file.href}>
+                  <HighlightedLink
+                    href={file.href}
+                    key={file.name}
+                  >
                     {formatLink(file.name)}
                   </HighlightedLink>
                 ))}
