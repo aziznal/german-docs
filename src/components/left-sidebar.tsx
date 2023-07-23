@@ -21,7 +21,7 @@ const LeftSidebar = forwardRef<HTMLDivElement, LeftSidebarProps>(
         {...props}
         ref={ref}
         className={cn(
-          `sticky top-[length:var(--header-height)] h-[length:var(--left-sidebar-height)] shrink-0 flex-col bg-neutral-100 px-6 pt-16 lg:flex transition-all duration-200`,
+          `sticky top-[length:var(--header-height)] h-[length:var(--left-sidebar-height)] shrink-0 flex-col overflow-y-auto bg-neutral-100 px-6 pb-10 pt-16 transition-all duration-200 lg:flex`,
           isOpen && "w-[length:var(--left-sidebar-width)]",
           !isOpen && "w-0 flex-shrink overflow-x-hidden px-0",
           className,
@@ -36,7 +36,7 @@ const LeftSidebar = forwardRef<HTMLDivElement, LeftSidebarProps>(
 
         <Accordion
           type="multiple"
-          className="text-sm"
+          className="mt-3 text-sm"
         >
           <AccordionItem value="overview">
             <AccordionTrigger>OVERVIEW</AccordionTrigger>
@@ -46,6 +46,59 @@ const LeftSidebar = forwardRef<HTMLDivElement, LeftSidebarProps>(
                 <HighlightedLink href="/">First Steps</HighlightedLink>
                 <HighlightedLink href="/foo">Foo</HighlightedLink>
                 <HighlightedLink href="/bar">Bar</HighlightedLink>
+                <HighlightedLink href="/baz">Baz</HighlightedLink>
+
+                <HighlightedLink href="/baz">Baz</HighlightedLink>
+                <HighlightedLink href="/baz">Baz</HighlightedLink>
+                <HighlightedLink href="/baz">Baz</HighlightedLink>
+                <HighlightedLink href="/baz">Baz</HighlightedLink>
+                <HighlightedLink href="/baz">Baz</HighlightedLink>
+                <HighlightedLink href="/baz">Baz</HighlightedLink>
+                <HighlightedLink href="/baz">Baz</HighlightedLink>
+                <HighlightedLink href="/baz">Baz</HighlightedLink>
+                <HighlightedLink href="/baz">Baz</HighlightedLink>
+                <HighlightedLink href="/baz">Baz</HighlightedLink>
+                <HighlightedLink href="/baz">Baz</HighlightedLink>
+                <HighlightedLink href="/baz">Baz</HighlightedLink>
+                <HighlightedLink href="/baz">Baz</HighlightedLink>
+                <HighlightedLink href="/baz">Baz</HighlightedLink>
+                <HighlightedLink href="/baz">Baz</HighlightedLink>
+                <HighlightedLink href="/baz">Baz</HighlightedLink>
+                <HighlightedLink href="/baz">Baz</HighlightedLink>
+                <HighlightedLink href="/baz">Baz</HighlightedLink>
+                <HighlightedLink href="/baz">Baz</HighlightedLink>
+                <HighlightedLink href="/baz">Baz</HighlightedLink>
+
+
+                <HighlightedLink href="/baz">Baz</HighlightedLink>
+                <HighlightedLink href="/baz">Baz</HighlightedLink>
+                <HighlightedLink href="/baz">Baz</HighlightedLink>
+                <HighlightedLink href="/baz">Baz</HighlightedLink>
+                <HighlightedLink href="/baz">Baz</HighlightedLink>
+                <HighlightedLink href="/baz">Baz</HighlightedLink>
+                <HighlightedLink href="/baz">Baz</HighlightedLink>
+                <HighlightedLink href="/baz">Baz</HighlightedLink>
+                <HighlightedLink href="/baz">Baz</HighlightedLink>
+                <HighlightedLink href="/baz">Baz</HighlightedLink>
+                <HighlightedLink href="/baz">Baz</HighlightedLink>
+                <HighlightedLink href="/baz">Baz</HighlightedLink>
+                <HighlightedLink href="/baz">Baz</HighlightedLink>
+                <HighlightedLink href="/baz">Baz</HighlightedLink>
+                <HighlightedLink href="/baz">Baz</HighlightedLink>
+                <HighlightedLink href="/baz">Baz</HighlightedLink>
+                <HighlightedLink href="/baz">Baz</HighlightedLink>
+                <HighlightedLink href="/baz">Baz</HighlightedLink>
+                <HighlightedLink href="/baz">Baz</HighlightedLink>
+                <HighlightedLink href="/baz">Baz</HighlightedLink>
+                <HighlightedLink href="/baz">Baz</HighlightedLink>
+                <HighlightedLink href="/baz">Baz</HighlightedLink>
+                <HighlightedLink href="/baz">Baz</HighlightedLink>
+                <HighlightedLink href="/baz">Baz</HighlightedLink>
+                <HighlightedLink href="/baz">Baz</HighlightedLink>
+                <HighlightedLink href="/baz">Baz</HighlightedLink>
+                <HighlightedLink href="/baz">Baz</HighlightedLink>
+                <HighlightedLink href="/baz">Baz</HighlightedLink>
+                <HighlightedLink href="/baz">Baz</HighlightedLink>
                 <HighlightedLink href="/baz">Baz</HighlightedLink>
               </ul>
             </AccordionContent>
