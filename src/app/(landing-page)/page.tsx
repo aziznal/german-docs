@@ -6,7 +6,7 @@ export default function LandingPage() {
       <h1>Welcome to German Docs</h1>
 
       <Link
-        href="/getting-started"
+        href="/introduction"
         className="font-bold text-blue-500 underline hover:text-blue-400"
       >
         Visit the docs to get started
