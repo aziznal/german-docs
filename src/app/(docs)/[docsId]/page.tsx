@@ -11,7 +11,7 @@ type PageProps = {
 export default async function MarkdownPage({ params }: PageProps) {
   const markdownContent = getMarkdownContent(params.docsId);
 
-  if (!markdownContent) return redirect("/404-not-found");
+  if (!markdownContent) return redirect("/page-not-found");
 
   return <ParsedMarkdown>{markdownContent}</ParsedMarkdown>;
 }

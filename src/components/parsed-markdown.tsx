@@ -10,7 +10,7 @@ export const ParsedMarkdown = ({ children }: { children: string }) => {
   return (
     <ReactMarkdown
       remarkPlugins={[remarkGfm]}
-      className="prose max-w-none"
+      className="prose prose-sm prose-neutral max-w-none lg:prose-base"
     >
       {children}
     </ReactMarkdown>
