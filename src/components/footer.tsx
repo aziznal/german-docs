@@ -22,18 +22,24 @@ const Footer = forwardRef<HTMLElement, React.HTMLAttributes<HTMLElement>>(
           alt="German flag"
         />
 
-        <p className="flex">
-          Made by
-          <a
-            href="https://github.com/aziznal/german-docs"
-            target="_blank"
-          >
-            <span className="mx-1 flex gap-1 font-bold text-rose-600">
-              aziznal <LucideGithub />{" "}
-            </span>
-          </a>
-          using NextJS 13 | Hosted by{" "}
-          <span className="ml-1 font-bold">Vercel</span>
+        <p className="inline-flex flex-wrap justify-center gap-1 text-center">
+          <div>
+            <span>Made by</span>
+
+            <a
+              href="https://github.com/aziznal/german-docs"
+              target="_blank"
+              className="mx-1 inline-flex gap-1 font-bold text-rose-600"
+            >
+              aziznal <LucideGithub />
+            </a>
+
+            <span>using NextJS 13</span>
+          </div>
+
+          <div>
+            | Hosted by <span className="ml-1 font-bold">Vercel</span>
+          </div>
         </p>
 
         <p>July 2023</p>
