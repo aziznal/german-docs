@@ -62,12 +62,10 @@ export async function getMarkdownListings(): Promise<FolderListing[]> {
 
 /** Returns the contents of the file with the given path */
 export async function getMarkdownContent(path: string): Promise<string | null> {
-  // const listings = getMarkdownListings();
-  // const markdownFile = listings.find((listing) => listing.name === path);
-  //
-  // if (!markdownFile) return null;
-
-  return (
-    await fsPromises.readFile(`${MARKDOWN_FOLDER_PATH}/${path}.md`)
-  ).toString();
+  return fsPromises
+    .readFile(`${MARKDOWN_FOLDER_PATH}/${path}.md`)
+    .then((buffer) => buffer.toString())
+    .catch((_error: unknown) => {
+      return null;
+    });
 }
