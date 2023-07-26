@@ -24,7 +24,7 @@ export default async function MarkdownPage({ params }: PageProps) {
 
   return (
     <div className="mt-20 flex grow px-6 pb-20 text-sm text-neutral-700 lg:px-20">
-      {parsedMarkdown}
+      <div className="grow">{parsedMarkdown}</div>
 
       <RightSidebar renderedMarkdown={parsedMarkdown} />
     </div>
