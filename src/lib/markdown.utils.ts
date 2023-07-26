@@ -1,4 +1,4 @@
-import * as fsPromises from "fs/promises";
+import { readdir, readFile } from "fs/promises";
 
 import path from "path";
 
@@ -16,7 +16,7 @@ export type FolderListing = {
 
 /** Returns a list of folder names within given path */
 export async function getDirectoryNames(path: string): Promise<string[]> {
-  const files = await fsPromises.readdir(path, { withFileTypes: true });
+  const files = await readdir(path, { withFileTypes: true });
 
   return files
     .filter((dirent) => dirent.isDirectory())
@@ -25,7 +25,7 @@ export async function getDirectoryNames(path: string): Promise<string[]> {
 
 /** Returns a list of .md file names within given path */
 export async function getMarkdownFileNames(path: string): Promise<string[]> {
-  const files = await fsPromises.readdir(path, { withFileTypes: true });
+  const files = await readdir(path, { withFileTypes: true });
 
   return files
     .filter((dirent) => dirent.isFile() && dirent.name.endsWith(".md"))
@@ -34,13 +34,13 @@ export async function getMarkdownFileNames(path: string): Promise<string[]> {
 
 /** Recursively returns all markdown files available in application  */
 export async function getMarkdownListings(): Promise<FolderListing[]> {
-  const folderListings: FolderListing[] = (
-    await getDirectoryNames(MARKDOWN_FOLDER_PATH)
-  ).map((dirName) => {
-    return {
-      name: dirName,
-    } satisfies FolderListing;
-  });
+  const folderListings = (await getDirectoryNames(MARKDOWN_FOLDER_PATH)).map(
+    (dirName) => {
+      return {
+        name: dirName,
+      } as FolderListing;
+    },
+  );
 
   await Promise.all(
     folderListings.map(async (folderListing) => {
@@ -52,7 +52,7 @@ export async function getMarkdownListings(): Promise<FolderListing[]> {
         return {
           name: fileName.replace(".md", ""),
           href: `/${folderListing.name}/${fileName.replace(".md", "")}`,
-        } satisfies FileListing;
+        };
       });
     }),
   );
@@ -62,8 +62,7 @@ export async function getMarkdownListings(): Promise<FolderListing[]> {
 
 /** Returns the contents of the file with the given path */
 export async function getMarkdownContent(path: string): Promise<string | null> {
-  return fsPromises
-    .readFile(`${MARKDOWN_FOLDER_PATH}/${path}.md`)
+  return readFile(`${MARKDOWN_FOLDER_PATH}/${path}.md`)
     .then((buffer) => buffer.toString())
     .catch((_error: unknown) => {
       return null;
