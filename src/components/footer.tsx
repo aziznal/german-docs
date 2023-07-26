@@ -22,8 +22,8 @@ const Footer = forwardRef<HTMLElement, React.HTMLAttributes<HTMLElement>>(
           alt="German flag"
         />
 
-        <p className="inline-flex flex-wrap justify-center gap-1 text-center">
-          <div>
+        <div className="inline-flex flex-wrap justify-center gap-1 text-center">
+          <p>
             <span>Made by</span>
 
             <a
@@ -35,12 +35,12 @@ const Footer = forwardRef<HTMLElement, React.HTMLAttributes<HTMLElement>>(
             </a>
 
             <span>using NextJS 13</span>
-          </div>
+          </p>
 
-          <div>
+          <p>
             | Hosted by <span className="ml-1 font-bold">Vercel</span>
-          </div>
-        </p>
+          </p>
+        </div>
 
         <p>July 2023</p>
 
