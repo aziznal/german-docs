@@ -1,5 +1,5 @@
 import { ParsedMarkdown } from "@/components/parsed-markdown";
-import RightSidebar from "@/components/right-sidebar";
+import TableOfContent from "@/components/table-of-content";
 import { getMarkdownContent } from "@/lib/markdown.utils";
 import { redirect } from "next/navigation";
 
@@ -26,7 +26,7 @@ export default async function MarkdownPage({ params }: PageProps) {
     <div className="mt-20 flex grow px-6 pb-20 text-sm text-neutral-700 lg:px-20">
       <div className="grow">{parsedMarkdown}</div>
 
-      <RightSidebar renderedMarkdown={parsedMarkdown} />
+      <TableOfContent renderedMarkdown={parsedMarkdown} />
     </div>
   );
 }

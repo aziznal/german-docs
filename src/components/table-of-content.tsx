@@ -3,7 +3,7 @@
 import { cn } from "@/lib/utils";
 import { ReactNode, forwardRef, useEffect, useState } from "react";
 
-type RightSidebarProps = React.HTMLAttributes<HTMLDivElement> & {
+type TableOfContentProps = React.HTMLAttributes<HTMLDivElement> & {
   renderedMarkdown: ReactNode;
 };
 
@@ -12,7 +12,7 @@ type Heading = {
   text: string;
 };
 
-const RightSidebar = forwardRef<HTMLDivElement, RightSidebarProps>(
+const TableOfContent = forwardRef<HTMLDivElement, TableOfContentProps>(
   ({ className, renderedMarkdown, ...props }, ref) => {
     const [headings, setHeadings] = useState<Heading[]>();
 
@@ -57,6 +57,6 @@ const RightSidebar = forwardRef<HTMLDivElement, RightSidebarProps>(
   },
 );
 
-RightSidebar.displayName = "RightSidebar";
+TableOfContent.displayName = "TableOfContent";
 
-export default RightSidebar;
+export default TableOfContent;
