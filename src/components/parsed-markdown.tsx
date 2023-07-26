@@ -1,3 +1,4 @@
+import { cn } from "@/lib/utils";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 
@@ -22,18 +23,21 @@ export const ParsedMarkdown = ({ children }: { children: string }) => {
         h1: ({ node, ...props }) => (
           <h1
             {...props}
+            className={cn("scroll-mt-28", props.className)}
             id={generateHeadingId(props.children.toString())}
           />
         ),
         h2: ({ node, ...props }) => (
           <h2
             {...props}
+            className={cn("scroll-mt-28", props.className)}
             id={generateHeadingId(props.children.toString())}
           />
         ),
         h3: ({ node, ...props }) => (
           <h3
             {...props}
+            className={cn("scroll-mt-28", props.className)}
             id={generateHeadingId(props.children.toString())}
           />
         ),
