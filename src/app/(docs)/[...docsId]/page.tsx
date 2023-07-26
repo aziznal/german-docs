@@ -1,4 +1,5 @@
 import { ParsedMarkdown } from "@/components/parsed-markdown";
+import RightSidebar from "@/components/right-sidebar";
 import { getMarkdownContent } from "@/lib/markdown.utils";
 import { redirect } from "next/navigation";
 
@@ -9,20 +10,23 @@ type PageProps = {
 };
 
 export default async function MarkdownPage({ params }: PageProps) {
-  // params.docsId is an array of strings or a string
-  //
-  // if it's a string, it's a single page, simply pass it on
   let markdownContent: string | null;
 
   if (typeof params.docsId === "string") {
     markdownContent = await getMarkdownContent(params.docsId);
   } else {
-    // if it's an array, it's a nested page, so we need to join the strings
-    // together to get the full path
     markdownContent = await getMarkdownContent(params.docsId.join("/"));
   }
 
   if (!markdownContent) return redirect("/page-not-found");
 
-  return <ParsedMarkdown>{markdownContent}</ParsedMarkdown>;
+  const parsedMarkdown = <ParsedMarkdown>{markdownContent}</ParsedMarkdown>;
+
+  return (
+    <div className="mt-20 flex grow px-6 pb-20 text-sm text-neutral-700 lg:px-20">
+      {parsedMarkdown}
+
+      <RightSidebar renderedMarkdown={parsedMarkdown} />
+    </div>
+  );
 }
