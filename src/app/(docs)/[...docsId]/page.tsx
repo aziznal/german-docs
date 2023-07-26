@@ -23,7 +23,7 @@ export default async function MarkdownPage({ params }: PageProps) {
   const parsedMarkdown = <ParsedMarkdown>{markdownContent}</ParsedMarkdown>;
 
   return (
-    <div className="mt-20 flex grow gap-24 pb-20 text-sm text-neutral-700 lg:px-20">
+    <div className="mt-20 flex grow gap-24 px-6 pb-20 text-sm text-neutral-700 lg:px-20">
       <div className="grow">{parsedMarkdown}</div>
 
       <TableOfContent renderedMarkdown={parsedMarkdown} />
