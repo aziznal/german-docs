@@ -1,5 +1,6 @@
 "use client";
 
+import { useActiveHeadingObserver } from "@/hooks/active-heading";
 import { cn } from "@/lib/utils";
 import { ReactNode, forwardRef, useEffect, useState } from "react";
 
@@ -15,6 +16,7 @@ type Heading = {
 const TableOfContent = forwardRef<HTMLDivElement, TableOfContentProps>(
   ({ className, renderedMarkdown, ...props }, ref) => {
     const [headings, setHeadings] = useState<Heading[]>();
+    const { activeHeadingId } = useActiveHeadingObserver();
 
     useEffect(() => {
       const main = document.querySelector("main");
@@ -47,7 +49,10 @@ const TableOfContent = forwardRef<HTMLDivElement, TableOfContentProps>(
             <a
               key={id}
               href={`#${id}`}
-              className="block px-4 py-2 text-sm text-neutral-700 hover:text-neutral-900"
+              className={cn(
+                "block px-4 py-2 text-sm text-neutral-700 hover:text-rose-600",
+                id === activeHeadingId && "text-rose-600",
+              )}
             >
               {text}
             </a>
