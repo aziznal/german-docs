@@ -28,8 +28,12 @@ const Header = forwardRef<HTMLElement, HeaderProps>(
             isLeftSidebarOpen && "lg:w-[length:var(--left-sidebar-width)]",
           )}
           onClick={toggleSidebar}
+          id="header-sidebar-toggle"
         >
-          <Menu size={32} />
+          <Menu
+            size={32}
+            id="header-sidebar-toggle"
+          />
         </div>
 
         <div className="flex grow items-center justify-end gap-4">

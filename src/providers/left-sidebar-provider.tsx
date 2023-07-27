@@ -11,14 +11,18 @@ import {
 export const LeftSidebarStateContext = createContext<{
   isLeftSidebarOpen: boolean;
   toggleSidebar: () => void;
+  closeSidebar: () => void;
 }>({
   isLeftSidebarOpen: false,
   toggleSidebar: () => {},
+  closeSidebar: () => {},
 });
 
 export const useLeftSidebarState = () => useContext(LeftSidebarStateContext);
 
-export default function LeftSidebarStateProvider({ children }: PropsWithChildren) {
+export default function LeftSidebarStateProvider({
+  children,
+}: PropsWithChildren) {
   const [isLeftSidebarOpen, setIsLeftSidebarOpen] = useState(true);
 
   // check screen size on first load to determine whether to keep sidebar open
@@ -43,6 +47,7 @@ export default function LeftSidebarStateProvider({ children }: PropsWithChildren
       value={{
         isLeftSidebarOpen,
         toggleSidebar: () => setIsLeftSidebarOpen((val) => !val),
+        closeSidebar: () => setIsLeftSidebarOpen(false),
       }}
     >
       {children}

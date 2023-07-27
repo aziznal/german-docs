@@ -6,6 +6,8 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 import clsx from "clsx";
+import { useLeftSidebarState } from "@/providers/left-sidebar-provider";
+import { useTailwindBreakpoints } from "@/hooks/breakpoints";
 
 export type HighlightedLinkProps = {
   href: string;
@@ -23,6 +25,9 @@ export default function HighlightedLink({
 }: HighlightedLinkProps) {
   const active = href.includes(usePathname());
 
+  const { closeSidebar } = useLeftSidebarState();
+  const { isOnSmallScreen } = useTailwindBreakpoints();
+
   return (
     <Link
       href={href}
@@ -32,6 +37,13 @@ export default function HighlightedLink({
         className,
       )}`}
       prefetch={true}
+      onClick={
+        isOnSmallScreen
+          ? () => {
+              closeSidebar();
+            }
+          : undefined
+      }
     >
       {children}
     </Link>
