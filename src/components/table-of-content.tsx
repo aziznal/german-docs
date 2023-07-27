@@ -44,7 +44,7 @@ const TableOfContent = forwardRef<HTMLDivElement, TableOfContentProps>(
           className,
         )}
       >
-        <span className="absolute left-[3px] top-3 z-0 h-[80%] w-[2px] bg-gray-100"></span>
+        <span className="absolute left-[3px] top-3 z-0 h-[80%] w-[2px] bg-gray-100 dark:bg-gray-700"></span>
 
         {headings &&
           headings.map(({ id, text }) => {
@@ -55,14 +55,14 @@ const TableOfContent = forwardRef<HTMLDivElement, TableOfContentProps>(
                 key={id}
                 href={`#${id}`}
                 className={cn(
-                  "z-10 flex items-center gap-6 text-sm text-neutral-700 hover:text-rose-600",
-                  isActive && "font-bold text-rose-600",
+                  "z-10 flex items-center gap-6 text-sm text-neutral-700 hover:text-rose-600 dark:text-foreground dark:hover:text-rose-600",
+                  isActive && "font-bold text-rose-600 dark:text-rose-600",
                 )}
               >
                 <span
                   className={cn(
-                    "border-3 block h-2 w-2 shrink-0 rounded-full bg-white outline outline-2 -outline-offset-1 outline-gray-100 transition",
-                    isActive && "bg-rose-600 outline-0",
+                    "border-3 block h-2 w-2 shrink-0 rounded-full bg-background outline outline-2 -outline-offset-1 outline-gray-100 transition dark:outline-gray-700",
+                    isActive && "bg-rose-600 outline-0 dark:bg-rose-600",
                   )}
                 ></span>
 

@@ -18,26 +18,26 @@ export const ParsedMarkdown = ({ children }: { children: string }) => {
   return (
     <ReactMarkdown
       remarkPlugins={[remarkGfm]}
-      className="prose prose-sm prose-neutral max-w-none lg:prose-base"
+      className="prose prose-sm prose-neutral max-w-none lg:prose-base dark:text-foreground"
       components={{
         h1: ({ node, ...props }) => (
           <h1
             {...props}
-            className={cn("scroll-mt-28", props.className)}
+            className={cn("scroll-mt-28 dark:text-foreground", props.className)}
             id={generateHeadingId(props.children.toString())}
           />
         ),
         h2: ({ node, ...props }) => (
           <h2
             {...props}
-            className={cn("scroll-mt-28", props.className)}
+            className={cn("scroll-mt-28 dark:text-foreground", props.className)}
             id={generateHeadingId(props.children.toString())}
           />
         ),
         h3: ({ node, ...props }) => (
           <h3
             {...props}
-            className={cn("scroll-mt-28", props.className)}
+            className={cn("scroll-mt-28 dark:text-foreground", props.className)}
             id={generateHeadingId(props.children.toString())}
           />
         ),

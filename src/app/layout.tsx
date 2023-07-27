@@ -1,3 +1,4 @@
+import ThemeProvider from "@/providers/theme-provider";
 import "./globals.css";
 import type { Metadata } from "next";
 
@@ -12,11 +13,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html
-      lang="en"
-      className="h-full"
-    >
-      <body className={`h-full font-sans`}>{children}</body>
-    </html>
+    <ThemeProvider>
+      <html
+        lang="en"
+        className="h-full"
+      >
+        <body className={`h-full font-sans`}>{children}</body>
+      </html>
+    </ThemeProvider>
   );
 }

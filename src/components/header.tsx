@@ -18,13 +18,13 @@ const Header = forwardRef<HTMLElement, HeaderProps>(
         {...props}
         ref={ref}
         className={cn(
-          `sticky top-0 flex shrink-0 basis-[length:var(--header-height)] items-center bg-neutral-900 pr-12 text-white`,
+          `sticky top-0 flex shrink-0 basis-[length:var(--header-height)] items-center bg-neutral-900 pr-12 text-white dark:bg-neutral-900`,
           className,
         )}
       >
         <div
           className={cn(
-            `flex h-full w-[80px] cursor-pointer items-center justify-center px-6 transition-all duration-200 hover:bg-neutral-800`,
+            `flex h-full w-[80px] cursor-pointer items-center justify-center px-6 transition-all duration-200 hover:bg-neutral-800 dark:hover:bg-neutral-700`,
             isLeftSidebarOpen && "lg:w-[length:var(--left-sidebar-width)]",
           )}
           onClick={toggleSidebar}
