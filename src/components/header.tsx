@@ -1,17 +1,26 @@
 "use client";
 
 import Link from "next/link";
-import { LucideGithub, Menu } from "lucide-react";
+import { LucideGithub, Menu, Moon, Sun } from "lucide-react";
 import Image from "next/image";
 import { forwardRef } from "react";
 import { cn } from "@/lib/utils";
 import { useLeftSidebarState } from "@/providers/left-sidebar-provider";
+import { useThemeContext } from "@/providers/theme-provider";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
 type HeaderProps = React.HTMLAttributes<HTMLElement> & {};
 
 const Header = forwardRef<HTMLElement, HeaderProps>(
   ({ className, ...props }, ref) => {
     const { isLeftSidebarOpen, toggleSidebar } = useLeftSidebarState();
+
+    const { setTheme, currentTheme } = useThemeContext();
 
     return (
       <header
@@ -64,6 +73,30 @@ const Header = forwardRef<HTMLElement, HeaderProps>(
             >
               <LucideGithub />
             </a>
+          </div>
+
+          <div className="flex items-center justify-center">
+            <DropdownMenu>
+              <DropdownMenuTrigger>
+                {currentTheme === "light" && <Sun />}
+                {currentTheme === "dark" && <Moon />}
+                {currentTheme === "system" && <Moon />}
+              </DropdownMenuTrigger>
+
+              <DropdownMenuContent align="end">
+                <DropdownMenuItem onClick={() => setTheme("dark")}>
+                  Dark
+                </DropdownMenuItem>
+
+                <DropdownMenuItem onClick={() => setTheme("light")}>
+                  Light
+                </DropdownMenuItem>
+
+                <DropdownMenuItem onClick={() => setTheme("system")}>
+                  System
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
           </div>
         </div>
       </header>
