@@ -42,8 +42,8 @@
   }
 
   .dark {
-    --background: 0 0% 10%;
-    --foreground: 0 0% 98%;
+    --background: 0 0% 15%;
+    --foreground: 0 0% 95%;
 
     --muted: 0 0% 14.9%;
     --muted-foreground: 0 0% 63.9%;
