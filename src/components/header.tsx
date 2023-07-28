@@ -40,6 +40,10 @@ const Header = forwardRef<HTMLElement, HeaderProps>(
           id="header-sidebar-toggle"
         >
           <Menu
+            onClick={(event) => {
+              event.stopPropagation();
+              toggleSidebar();
+            }}
             size={32}
             id="header-sidebar-toggle"
           />
