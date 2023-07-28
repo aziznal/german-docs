@@ -41,6 +41,34 @@ export const ParsedMarkdown = ({ children }: { children: string }) => {
             id={generateHeadingId(props.children.toString())}
           />
         ),
+        h4: ({ node, ...props }) => (
+          <h4
+            {...props}
+            className={cn("scroll-mt-28 dark:text-foreground", props.className)}
+            id={generateHeadingId(props.children.toString())}
+          />
+        ),
+        pre: ({ node, ...props }) => (
+          <pre
+            {...props}
+            className={cn("dark:bg-neutral-900", props.className)}
+          />
+        ),
+        blockquote: ({ node, ...props }) => (
+          <blockquote
+            {...props}
+            className={cn(
+              "dark:border-l-neutral-500 dark:text-foreground",
+              props.className,
+            )}
+          />
+        ),
+        hr: ({ node, ...props }) => (
+          <hr
+            {...props}
+            className={cn("border-neutral-600", props.className)}
+          />
+        ),
       }}
     >
       {children}
