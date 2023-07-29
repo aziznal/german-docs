@@ -15,7 +15,7 @@ const Footer = forwardRef<HTMLElement, React.HTMLAttributes<HTMLElement>>(
         )}
       >
         <Image
-          className="mb-2"
+          className="mb-2 rounded border border-neutral-600"
           src="/germany-flag.png"
           width={50}
           height={70}
