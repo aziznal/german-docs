@@ -3,21 +3,28 @@
 import { cn } from "@/lib/utils";
 import { InputHTMLAttributes, forwardRef, useEffect, useState } from "react";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
+import { useGetPlatform } from "@/hooks/platform";
 
 export type SearchBarProps = InputHTMLAttributes<HTMLInputElement> & {};
 
-function isMac(): boolean {
-  return navigator.platform.toUpperCase().indexOf("MAC") >= 0;
-}
-
 const SearchBar = forwardRef<HTMLInputElement, SearchBarProps>(
   ({ className, ...props }, ref) => {
+    const { isMacos } = useGetPlatform();
     const [isSearchOverlayOpen, setIsSearchOverlayOpen] = useState(false);
 
     // Listen to Cmd+K or Ctrl+K to open the search overlay
     useEffect(() => {
       const openSearchOverlay = (e: KeyboardEvent) => {
-        if (e.key === "k" && (e.metaKey || e.ctrlKey)) {
+        // Cmd+K for macOS
+        if (isMacos && e.key === "k" && e.metaKey) {
+          e.preventDefault();
+          setIsSearchOverlayOpen(true);
+          return;
+        }
+
+        // Ctrl+K for Windows/Linux
+        if (e.key === "k" && e.ctrlKey) {
+          e.preventDefault();
           setIsSearchOverlayOpen(true);
         }
       };
@@ -35,7 +42,7 @@ const SearchBar = forwardRef<HTMLInputElement, SearchBarProps>(
           <input
             {...props}
             ref={ref}
-            placeholder="Search the docs..."
+            placeholder="Quick search..."
             onClick={() => setIsSearchOverlayOpen(true)}
             className={cn(
               "cursor-pointer rounded bg-neutral-800 px-4 py-2 pr-2 text-muted-foreground transition-colors duration-200 ease-in-out hover:bg-neutral-700 focus:bg-neutral-700 focus:outline-none",
@@ -43,15 +50,15 @@ const SearchBar = forwardRef<HTMLInputElement, SearchBarProps>(
             )}
           />
 
-          <span className="absolute right-0 hidden items-center gap-1 pr-3 font-mono text-sm text-muted-foreground lg:flex">
-            {isMac() ? (
-              <span className="text-lg">⌘</span>
+          <div className="absolute right-0 hidden items-center gap-2 pr-3 font-mono text-sm text-muted-foreground lg:flex">
+            {isMacos ? (
+              <span className="mb-[2px] text-lg">⌘</span>
             ) : (
-              <span className="text-lg">C</span>
+              <span>Ctrl</span>
             )}
 
             <span>K</span>
-          </span>
+          </div>
         </div>
 
         <Dialog

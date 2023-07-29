@@ -39,8 +39,6 @@ export function ThemeProvider({ children }: PropsWithChildren) {
   useEffect(() => {
     const theme = localStorage.getItem("theme");
 
-    console.log(`stored system theme: ${theme}`);
-
     if (!theme || !isValidTheme(theme)) {
       setCurrentTheme("system");
       return;
@@ -51,8 +49,6 @@ export function ThemeProvider({ children }: PropsWithChildren) {
 
   // update system theme when it changes
   useEffect(() => {
-    console.log(`setting theme to ${currentTheme}`);
-
     const root = document.getElementsByTagName("html")[0];
 
     switch (currentTheme) {
