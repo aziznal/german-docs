@@ -65,7 +65,7 @@ const SearchBar = forwardRef<HTMLInputElement, SearchBarProps>(
           open={isSearchOverlayOpen}
           onOpenChange={setIsSearchOverlayOpen}
         >
-          <DialogContent className="absolute top-52 border-neutral-300 bg-neutral-700">
+          <DialogContent className="fixed top-52 border-neutral-300 bg-neutral-700">
             Hello World!
           </DialogContent>
         </Dialog>
