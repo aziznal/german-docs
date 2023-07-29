@@ -1,5 +1,6 @@
 "use client";
 
+import { useTailwindBreakpoints } from "@/hooks/breakpoints";
 import {
   PropsWithChildren,
   createContext,
@@ -25,6 +26,8 @@ export default function LeftSidebarStateProvider({
 }: PropsWithChildren) {
   const [isLeftSidebarOpen, setIsLeftSidebarOpen] = useState(true);
 
+  const { isOnSmallScreen } = useTailwindBreakpoints();
+
   // check screen size on first load to determine whether to keep sidebar open
   useEffect(() => {
     setIsLeftSidebarOpen(window.innerWidth > 1024);
@@ -33,7 +36,7 @@ export default function LeftSidebarStateProvider({
   // close self when screen size is less that lg
   useEffect(() => {
     function changeToggleState() {
-      setIsLeftSidebarOpen(window.innerWidth > 1024);
+      if (isOnSmallScreen) setIsLeftSidebarOpen(false);
     }
 
     window.addEventListener("resize", (_event) => changeToggleState());
