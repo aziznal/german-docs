@@ -26,7 +26,7 @@ const Header = forwardRef<HTMLElement, HeaderProps>(
         {...props}
         ref={ref}
         className={cn(
-          `sticky top-0 flex shrink-0 basis-[length:var(--header-height)] items-center gap-7 bg-neutral-900 pr-6 text-white dark:bg-neutral-900`,
+          `sticky top-0 flex shrink-0 basis-[length:var(--header-height)] items-center bg-neutral-900 pr-6 text-white dark:bg-neutral-900 sm:gap-7`,
           className,
         )}
       >
@@ -53,13 +53,13 @@ const Header = forwardRef<HTMLElement, HeaderProps>(
         <div className="flex grow items-center justify-center gap-4">
           <Image
             src="/germany-flag.png"
-            className="hidden sm:block rounded border border-neutral-600"
+            className="hidden rounded border border-neutral-600 sm:block"
             width={50}
             height={70}
             alt="German flag"
           />
 
-          <span className="w-[200px] rounded bg-neutral-800 px-4 py-2 text-muted-foreground">
+          <span className="grow rounded bg-neutral-800 px-4 py-2 text-muted-foreground sm:w-[300px] sm:grow-0">
             Search the docs...
           </span>
         </div>
@@ -75,7 +75,7 @@ const Header = forwardRef<HTMLElement, HeaderProps>(
         </div>
 
         {/* Theme switcher */}
-        <div className="flex items-center justify-center">
+        <div className="ml-4 sm:ml-0 flex items-center justify-center">
           <DropdownMenu>
             <DropdownMenuTrigger>
               {currentTheme === "light" && <Sun />}
