@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import { LucideGithub, Menu, Moon, Sun } from "lucide-react";
 import Image from "next/image";
 import { forwardRef } from "react";
@@ -27,10 +26,11 @@ const Header = forwardRef<HTMLElement, HeaderProps>(
         {...props}
         ref={ref}
         className={cn(
-          `sticky top-0 flex shrink-0 basis-[length:var(--header-height)] items-center bg-neutral-900 pr-12 text-white dark:bg-neutral-900`,
+          `sticky top-0 flex shrink-0 basis-[length:var(--header-height)] items-center gap-7 bg-neutral-900 pr-6 text-white dark:bg-neutral-900`,
           className,
         )}
       >
+        {/* Header toggle */}
         <div
           className={cn(
             `flex h-full w-[80px] cursor-pointer items-center justify-center px-6 transition-all duration-200 hover:bg-neutral-800 dark:hover:bg-neutral-700`,
@@ -49,59 +49,54 @@ const Header = forwardRef<HTMLElement, HeaderProps>(
           />
         </div>
 
-        <div className="flex grow items-center justify-end gap-4">
-          <span className="flex grow justify-center text-center text-5xl lg:flex-grow-0">
-            <Image
-              src="/germany-flag.png"
-              width={50}
-              height={70}
-              alt="German flag"
-            />
+        {/* Logo & Search */}
+        <div className="flex grow items-center justify-center gap-4">
+          <Image
+            src="/germany-flag.png"
+            className="hidden sm:block rounded border border-neutral-600"
+            width={50}
+            height={70}
+            alt="German flag"
+          />
+
+          <span className="w-[200px] rounded bg-neutral-800 px-4 py-2 text-muted-foreground">
+            Search the docs...
           </span>
+        </div>
 
-          <div className="hidden gap-4 lg:flex">
-            <span className="w-[200px] bg-neutral-700">Search</span>
+        {/* Github link */}
+        <div className="hidden lg:block">
+          <a
+            href="https://github.com/aziznal/german-docs"
+            target="_blank"
+          >
+            <LucideGithub />
+          </a>
+        </div>
 
-            <Link
-              href="/"
-              className="font-bold uppercase"
-            >
-              Landing Page
-            </Link>
-          </div>
+        {/* Theme switcher */}
+        <div className="flex items-center justify-center">
+          <DropdownMenu>
+            <DropdownMenuTrigger>
+              {currentTheme === "light" && <Sun />}
+              {currentTheme === "dark" && <Moon />}
+              {currentTheme === "system" && <Moon />}
+            </DropdownMenuTrigger>
 
-          <div className="hidden lg:block">
-            <a
-              href="https://github.com/aziznal/german-docs"
-              target="_blank"
-            >
-              <LucideGithub />
-            </a>
-          </div>
+            <DropdownMenuContent align="end">
+              <DropdownMenuItem onClick={() => setTheme("dark")}>
+                Dark
+              </DropdownMenuItem>
 
-          <div className="flex items-center justify-center">
-            <DropdownMenu>
-              <DropdownMenuTrigger>
-                {currentTheme === "light" && <Sun />}
-                {currentTheme === "dark" && <Moon />}
-                {currentTheme === "system" && <Moon />}
-              </DropdownMenuTrigger>
+              <DropdownMenuItem onClick={() => setTheme("light")}>
+                Light
+              </DropdownMenuItem>
 
-              <DropdownMenuContent align="end">
-                <DropdownMenuItem onClick={() => setTheme("dark")}>
-                  Dark
-                </DropdownMenuItem>
-
-                <DropdownMenuItem onClick={() => setTheme("light")}>
-                  Light
-                </DropdownMenuItem>
-
-                <DropdownMenuItem onClick={() => setTheme("system")}>
-                  System
-                </DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
-          </div>
+              <DropdownMenuItem onClick={() => setTheme("system")}>
+                System
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
         </div>
       </header>
     );
