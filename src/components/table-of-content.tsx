@@ -40,7 +40,7 @@ const TableOfContent = forwardRef<HTMLDivElement, TableOfContentProps>(
         {...props}
         ref={ref}
         className={cn(
-          `sticky top-[calc(var(--header-height)_+_48px)] hidden h-fit basis-[180px] flex-col gap-3 lg:flex lg:shrink-0`,
+          `sticky top-[calc(var(--header-height)_+_48px)] hidden h-fit shrink-0 basis-[180px] flex-col gap-3 lg:flex`,
           className,
         )}
       >

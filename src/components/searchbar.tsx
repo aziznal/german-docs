@@ -34,7 +34,7 @@ const SearchBar = forwardRef<HTMLInputElement, SearchBarProps>(
       return () => {
         document.removeEventListener("keydown", openSearchOverlay);
       };
-    }, []);
+    }, [isMacos]);
 
     return (
       <>
