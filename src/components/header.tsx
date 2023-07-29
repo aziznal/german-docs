@@ -12,6 +12,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import SearchBar from "./searchbar";
 
 type HeaderProps = React.HTMLAttributes<HTMLElement> & {};
 
@@ -59,9 +60,7 @@ const Header = forwardRef<HTMLElement, HeaderProps>(
             alt="German flag"
           />
 
-          <span className="grow rounded bg-neutral-800 px-4 py-2 text-muted-foreground sm:w-[300px] sm:grow-0">
-            Search the docs...
-          </span>
+          <SearchBar className="grow sm:w-[300px] sm:grow-0" />
         </div>
 
         {/* Github link */}
@@ -75,7 +74,7 @@ const Header = forwardRef<HTMLElement, HeaderProps>(
         </div>
 
         {/* Theme switcher */}
-        <div className="ml-4 sm:ml-0 flex items-center justify-center">
+        <div className="ml-4 flex items-center justify-center sm:ml-0">
           <DropdownMenu>
             <DropdownMenuTrigger>
               {currentTheme === "light" && <Sun />}
