@@ -1,11 +1,11 @@
 "use client";
 
 import { cn } from "@/lib/utils";
-import { InputHTMLAttributes, forwardRef, useEffect, useState } from "react";
+import { HTMLAttributes, forwardRef, useEffect, useState } from "react";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { useGetPlatform } from "@/hooks/platform";
 
-export type SearchBarProps = InputHTMLAttributes<HTMLInputElement> & {};
+export type SearchBarProps = HTMLAttributes<HTMLDivElement> & {};
 
 const SearchBar = forwardRef<HTMLInputElement, SearchBarProps>(
   ({ className, ...props }, ref) => {
@@ -38,19 +38,19 @@ const SearchBar = forwardRef<HTMLInputElement, SearchBarProps>(
 
     return (
       <>
-        <div className="relative flex items-center">
-          <input
+        <div
+          className={cn("relative flex items-center", className)}
+          onClick={() => setIsSearchOverlayOpen(true)}
+        >
+          <div
             {...props}
             ref={ref}
-            placeholder="Quick search..."
-            onClick={() => setIsSearchOverlayOpen(true)}
-            className={cn(
-              "cursor-pointer rounded bg-neutral-800 px-4 py-2 pr-2 text-muted-foreground transition-colors duration-200 ease-in-out hover:bg-neutral-700 focus:bg-neutral-700 focus:outline-none",
-              className,
-            )}
-          />
+            className="grow cursor-pointer rounded bg-neutral-800 px-4 py-2 text-muted-foreground transition-colors duration-200 ease-in-out hover:bg-neutral-700 focus:bg-neutral-700 focus:outline-none"
+          >
+            Quick search...
+          </div>
 
-          <div className="absolute right-0 hidden items-center gap-2 pr-3 font-mono text-sm text-muted-foreground lg:flex">
+          <div className="pointer-events-none absolute right-0 hidden cursor-pointer items-center gap-2 pr-3 font-mono text-sm text-muted-foreground lg:flex">
             {isMacos ? (
               <span className="mb-[2px] text-lg">⌘</span>
             ) : (
