@@ -79,7 +79,7 @@ const SearchBar = forwardRef<HTMLInputElement, SearchBarProps>(
               <div className="space-y-3">
                 <div className="text-lg font-bold">Der Die Das</div>
 
-                <div className="flex cursor-pointer items-center justify-between rounded bg-neutral-200 p-3 transition duration-75 hover:bg-rose-500 dark:bg-neutral-600">
+                <div className="flex cursor-pointer items-center justify-between rounded bg-neutral-200 p-3 transition duration-75 hover:bg-rose-500 dark:bg-neutral-600 dark:hover:bg-rose-500">
                   <div className="flex gap-2">
                     <Hash /> <span>Nominative (the The in german)</span>
                   </div>
@@ -87,7 +87,7 @@ const SearchBar = forwardRef<HTMLInputElement, SearchBarProps>(
                   <ArrowRight />
                 </div>
 
-                <div className="flex cursor-pointer items-center justify-between rounded bg-neutral-200 p-3 transition duration-75 hover:bg-rose-500 dark:bg-neutral-600">
+                <div className="flex cursor-pointer items-center justify-between rounded bg-neutral-200 p-3 transition duration-75 hover:bg-rose-500 dark:bg-neutral-600 dark:hover:bg-rose-500">
                   <div className="flex gap-2">
                     <Hash /> <span>Nominative (the The in german)</span>
                   </div>
