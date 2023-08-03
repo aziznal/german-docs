@@ -5,14 +5,60 @@ import { HTMLAttributes, forwardRef, useEffect, useState } from "react";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { useGetPlatform } from "@/hooks/platform";
 import { Input } from "@/components/ui/input";
-import { ArrowRight, Hash, Search } from "lucide-react";
+import { ArrowRight, Hash, SearchIcon } from "lucide-react";
+import Link from "next/link";
 
 export type SearchBarProps = HTMLAttributes<HTMLDivElement> & {};
+
+export type SearchResult = {
+  pageName: string;
+  headings: {
+    title: string;
+    matchingParagraph: string;
+    href: string;
+  }[];
+};
+
+const mockSearchResults: SearchResult[] = [
+  {
+    pageName: "Der Die Das",
+    headings: [
+      {
+        title: "Nominative",
+        matchingParagraph: "Der Die Das",
+        href: "#",
+      },
+      {
+        title: "Accusative",
+        matchingParagraph: "Der Die Das",
+        href: "#accusative",
+      },
+    ],
+  },
+  {
+    pageName: "Ein Eine Ein",
+    headings: [
+      {
+        title: "Not Nominative",
+        matchingParagraph: "Ein Eine Ein",
+        href: "#",
+      },
+    ],
+  },
+];
 
 const SearchBar = forwardRef<HTMLInputElement, SearchBarProps>(
   ({ className, ...props }, ref) => {
     const { isMacos } = useGetPlatform();
     const [isSearchOverlayOpen, setIsSearchOverlayOpen] = useState(false);
+
+    const [searchResults, setSearchResults] = useState([] as SearchResult[]);
+    const [searchInput, setSearchInput] = useState("");
+
+    // TODO: remove
+    useEffect(() => {
+      setSearchResults([...mockSearchResults]);
+    }, []);
 
     // Listen to Cmd+K or Ctrl+K to open the search overlay
     useEffect(() => {
@@ -42,7 +88,10 @@ const SearchBar = forwardRef<HTMLInputElement, SearchBarProps>(
       <>
         <div
           className={cn("relative flex items-center", className)}
-          onClick={() => setIsSearchOverlayOpen(true)}
+          onClick={() => {
+            setIsSearchOverlayOpen(true);
+            setSearchInput("");
+          }}
         >
           <div
             {...props}
@@ -61,40 +110,78 @@ const SearchBar = forwardRef<HTMLInputElement, SearchBarProps>(
 
         <Dialog
           open={isSearchOverlayOpen}
-          onOpenChange={setIsSearchOverlayOpen}
+          onOpenChange={(state) => {
+            setIsSearchOverlayOpen(state);
+            setSearchInput("");
+          }}
         >
-          <DialogContent className="fixed top-48 border-neutral-300 p-0 pb-6 dark:bg-neutral-700 md:max-w-[700px] lg:absolute lg:top-[40%] [&>*]:mx-6">
+          <DialogContent className="fixed top-48 border-neutral-300 p-0 pb-6 dark:border-neutral-700 dark:bg-neutral-800 md:max-w-[700px] lg:absolute lg:top-[40%] [&>*]:mx-6">
             {/* Search input */}
-            <div className="mt-12 flex items-center rounded border px-4 focus-within:border-rose-500">
-              <Search />
+            <div className="mt-12 flex items-center rounded border border-neutral-700 px-4 focus-within:border-rose-500">
+              <SearchIcon />
 
               <Input
+                value={searchInput}
+                onChange={(e) => setSearchInput(e.target.value)}
                 placeholder="Search for anything..."
                 className="rounded-0 h-16 border-0 bg-transparent outline-0 ring-0 focus-visible:ring-0 focus-visible:ring-offset-0"
               />
             </div>
 
             {/* Search results */}
-            <div className="flex max-h-[70dvh] flex-col gap-6 overflow-y-auto lg:max-h-[50vh]">
-              <div className="space-y-3">
-                <div className="text-lg font-bold">Der Die Das</div>
+            <div className="flex max-h-[70dvh] min-h-[200px] flex-col gap-6 overflow-y-auto lg:max-h-[50vh]">
+              {searchResults.map((searchResult) => {
+                return (
+                  <div
+                    className="space-y-3"
+                    key={searchResult.pageName}
+                  >
+                    <div className="text-lg font-bold">
+                      {searchResult.pageName}
+                    </div>
 
-                <div className="flex cursor-pointer items-center justify-between rounded bg-neutral-200 p-3 transition duration-75 hover:bg-rose-500 dark:bg-neutral-600 dark:hover:bg-rose-500">
-                  <div className="flex gap-2">
-                    <Hash /> <span>Nominative (the The in german)</span>
+                    {searchResult.headings.map((heading) => {
+                      return (
+                        <Link
+                          onClick={() => {
+                            setIsSearchOverlayOpen(false);
+                            setSearchInput("");
+                          }}
+                          key={searchResult.pageName + heading.title}
+                          href={heading.href}
+                          className={`
+                                flex
+                                cursor-pointer
+                                items-center
+                                justify-between
+                                rounded
+                                bg-neutral-200
+                                p-3
+                                transition
+                                duration-75
+
+                                hover:bg-rose-500
+                                focus:bg-rose-500
+                                focus:text-white
+                                focus:outline-0
+
+                                dark:bg-neutral-700
+                                dark:hover:bg-rose-500
+                                dark:focus:bg-rose-500
+                                dark:focus:outline-0
+                          `}
+                        >
+                          <div className="flex gap-2">
+                            <Hash /> <span>{heading.title}</span>
+                          </div>
+
+                          <ArrowRight />
+                        </Link>
+                      );
+                    })}
                   </div>
-
-                  <ArrowRight />
-                </div>
-
-                <div className="flex cursor-pointer items-center justify-between rounded bg-neutral-200 p-3 transition duration-75 hover:bg-rose-500 dark:bg-neutral-600 dark:hover:bg-rose-500">
-                  <div className="flex gap-2">
-                    <Hash /> <span>Nominative (the The in german)</span>
-                  </div>
-
-                  <ArrowRight />
-                </div>
-              </div>
+                );
+              })}
             </div>
           </DialogContent>
         </Dialog>
