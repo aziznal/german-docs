@@ -1,13 +1,6 @@
-import { cn } from "@/lib/utils";
+import { cn, generateHtmlId } from "@/lib/utils";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
-
-function generateHeadingId(text: string) {
-  return text
-    .toLowerCase()
-    .replace(/\s/g, "-")
-    .replace(/[^a-zA-Z0-9-_]/g, "");
-}
 
 /*
  * This component takes in a raw string of markdown and parses it into HTML
@@ -24,28 +17,28 @@ export const ParsedMarkdown = ({ children }: { children: string }) => {
           <h1
             {...props}
             className={cn("scroll-mt-28 dark:text-foreground", props.className)}
-            id={generateHeadingId(props.children.toString())}
+            id={generateHtmlId(props.children.toString())}
           />
         ),
         h2: ({ node, ...props }) => (
           <h2
             {...props}
             className={cn("scroll-mt-28 dark:text-foreground", props.className)}
-            id={generateHeadingId(props.children.toString())}
+            id={generateHtmlId(props.children.toString())}
           />
         ),
         h3: ({ node, ...props }) => (
           <h3
             {...props}
             className={cn("scroll-mt-28 dark:text-foreground", props.className)}
-            id={generateHeadingId(props.children.toString())}
+            id={generateHtmlId(props.children.toString())}
           />
         ),
         h4: ({ node, ...props }) => (
           <h4
             {...props}
             className={cn("scroll-mt-28 dark:text-foreground", props.className)}
-            id={generateHeadingId(props.children.toString())}
+            id={generateHtmlId(props.children.toString())}
           />
         ),
         pre: ({ node, ...props }) => (
