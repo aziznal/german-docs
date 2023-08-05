@@ -1,5 +1,9 @@
 # German Docs, in a programmer's dialect
 
+## Note:
+
+This website is still a work in progress.
+
 ## About this site
 
 This site is my attempt at journaling my journey learning German in my own way, and
