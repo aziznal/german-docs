@@ -1,0 +1,123 @@
+[
+  {
+    "pageName": "Getting-Started",
+    "headings": [
+      {
+        "title": "Getting Started",
+        "paragraphs": [],
+        "href": "/Hello-World/Getting-Started#getting-started"
+      },
+      {
+        "title": "Determining Your Level",
+        "paragraphs": [
+          "Knowing your level in German is the first step to knowing what to focus on next."
+        ],
+        "href": "/Hello-World/Getting-Started#determining-your-level"
+      },
+      {
+        "title": "Starting From Scratch",
+        "paragraphs": [],
+        "href": "/Hello-World/Getting-Started#starting-from-scratch"
+      },
+      {
+        "title": "Improving Existing Knowledge",
+        "paragraphs": [],
+        "href": "/Hello-World/Getting-Started#improving-existing-knowledge"
+      },
+      {
+        "title": "Using the Search",
+        "paragraphs": [
+          "The search is still in development. When finished, it'll enable you to find any resource on the website with ease, including the context and page which it is found in.",
+          "You will also be able to see your recent searches as well as favorite searches which you access frequently."
+        ],
+        "href": "/Hello-World/Getting-Started#using-the-search"
+      }
+    ]
+  },
+  {
+    "pageName": "Roadmap",
+    "headings": [
+      {
+        "title": "Roadmap",
+        "paragraphs": [
+          "While this site is meant as a general reference which anyone can use, there are some concepts which can be associated with a higher priorty due to being more common in everyday speech and increase in ability of expressivness.",
+          "With that in mind, the following could be considered depending on what level you consider yourself to be:"
+        ],
+        "href": "/Hello-World/Roadmap#roadmap"
+      }
+    ]
+  },
+  {
+    "pageName": "Perfect-Past",
+    "headings": [
+      {
+        "title": "Perfect Past",
+        "paragraphs": [],
+        "href": "/The-Past/Perfect-Past#perfect-past"
+      }
+    ]
+  },
+  {
+    "pageName": "Quick-start",
+    "headings": [
+      {
+        "title": "Quick Start",
+        "paragraphs": [
+          "The past is for things that have happened in that past. Thank you for attending my TED talk."
+        ],
+        "href": "/The-Past/Quick-start#quick-start"
+      },
+      {
+        "title": "What you need to know",
+        "paragraphs": [],
+        "href": "/The-Past/Quick-start#what-you-need-to-know"
+      },
+      {
+        "title": "3 Types of Past",
+        "paragraphs": [],
+        "href": "/The-Past/Quick-start#3-types-of-past"
+      },
+      {
+        "title": "Most common usages",
+        "paragraphs": [],
+        "href": "/The-Past/Quick-start#most-common-usages"
+      }
+    ]
+  },
+  {
+    "pageName": "Reported-Past",
+    "headings": [
+      {
+        "title": "Reported Past",
+        "paragraphs": [
+          "I heard this one was interesting"
+        ],
+        "href": "/The-Past/Reported-Past#reported-past"
+      }
+    ]
+  },
+  {
+    "pageName": "Simple-Past",
+    "headings": [
+      {
+        "title": "Simple Past",
+        "paragraphs": [
+          "Pretty simple, if you can memorize all the irregular cases!"
+        ],
+        "href": "/The-Past/Simple-Past#simple-past"
+      }
+    ]
+  },
+  {
+    "pageName": "Intro-to-conjugation",
+    "headings": [
+      {
+        "title": "Conjugation of Verbs",
+        "paragraphs": [
+          "Verb conjugation is a set of rules, which can be arbitrarily ignored, that determine how a verb changes depending on the subject being used with it."
+        ],
+        "href": "/Verb-Conjugation/Intro-to-conjugation#conjugation-of-verbs"
+      }
+    ]
+  }
+]

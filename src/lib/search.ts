@@ -1,6 +1,6 @@
 import path from "path";
 
-import { rm, mkdir } from "fs/promises";
+import { rm, mkdir, writeFile } from "fs/promises";
 
 import { unified } from "unified";
 import remarkParse from "remark-parse";
@@ -26,15 +26,14 @@ export type SearchResult = {
   }[];
 };
 
-const MARKDOWN_FOLDER_PATH = path.join(process.cwd(), "markdown");
+const MARKDOWN_SEARCH_INDEX_FOLDER_PATH = path.join(
+  process.cwd(),
+  "search-index",
+);
 
-const BUILT_MARKDOWN_FOLDER_PATH = path.join(process.cwd(), "built-markdown");
+const MARKDOWN_SEARCH_INDEX_FILE_PATH = `${MARKDOWN_SEARCH_INDEX_FOLDER_PATH}/markdown-index.json`;
 
 export async function build(): Promise<void> {
-  // remove prev. build and create new folder
-  await rm(BUILT_MARKDOWN_FOLDER_PATH, { recursive: true, force: true });
-  await mkdir(BUILT_MARKDOWN_FOLDER_PATH);
-
   // load all markdown files
   const markdownFiles = (await getMarkdownListings()).reduce((acc, next) => {
     return {
@@ -68,7 +67,14 @@ export async function build(): Promise<void> {
     }),
   );
 
+  // remove prev. build and create new folder
+  await rm(MARKDOWN_SEARCH_INDEX_FOLDER_PATH, { recursive: true, force: true });
+  await mkdir(MARKDOWN_SEARCH_INDEX_FOLDER_PATH);
+
   // save as json
+  const searchDb = JSON.stringify(parsedMarkdown, null, 2);
+
+  await writeFile(MARKDOWN_SEARCH_INDEX_FILE_PATH, searchDb);
 }
 
 function parseToMatchableBlock({
@@ -88,7 +94,7 @@ function parseToMatchableBlock({
     if (child.type === "heading") {
       if (currentHeading) headings.push(currentHeading);
 
-      const headingText = getTextContent(child);
+      const headingText = getNodeTextContent(child);
 
       currentHeading = {
         title: headingText,
@@ -99,7 +105,7 @@ function parseToMatchableBlock({
 
     // 2. If next child is not heading, store it under current heading
     if (child.type === "paragraph") {
-      const paragraphText = getTextContent(child);
+      const paragraphText = getNodeTextContent(child);
       currentHeading?.paragraphs.push(paragraphText);
     }
 
@@ -109,9 +115,14 @@ function parseToMatchableBlock({
     }
   });
 
-  console.log(headings);
-
   return headings;
+}
+
+function getNodeTextContent(value: unknown): string {
+  return getTextContent(value, {
+    includeHtml: false,
+    includeImageAlt: false,
+  }).replaceAll("\n", " ");
 }
 
 export function search({ query }: { query: string }): SearchResult[] {
