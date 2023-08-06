@@ -33,8 +33,14 @@ const MARKDOWN_SEARCH_INDEX_FOLDER_PATH = path.join(
 
 const MARKDOWN_SEARCH_INDEX_FILE_PATH = `${MARKDOWN_SEARCH_INDEX_FOLDER_PATH}/markdown-index.json`;
 
-export async function build(): Promise<void> {
-  // load all markdown files
+/**
+ * Creates a json file where all markdown files are in a format which is easier
+ * to search.
+ *
+ * This is meant to be ran every time the markdown content has changed
+ */
+export async function buildSearchIndex(): Promise<void> {
+  // load all markdown files into one list
   const markdownFiles = (await getMarkdownListings()).reduce((acc, next) => {
     return {
       ...acc,
@@ -67,7 +73,7 @@ export async function build(): Promise<void> {
     }),
   );
 
-  // remove prev. build and create new folder
+  // remove prev. index and create new one
   await rm(MARKDOWN_SEARCH_INDEX_FOLDER_PATH, { recursive: true, force: true });
   await mkdir(MARKDOWN_SEARCH_INDEX_FOLDER_PATH);
 
