@@ -1,5 +1,8 @@
 import path from "path";
 
+import { unified } from "unified";
+import remarkParse from "remark-parse";
+
 export type BuildResult = {
   pageName: string;
   headings: {
@@ -37,5 +40,9 @@ export function search({ query }: { query: string }): SearchResult[] {
   // 2. find all headings that match the query or contain a paragraph that matches the query
   // 3. return the results
 
-  throw new Error("Not implemented");
+  const tree = unified().use(remarkParse).parse("# Hello world!");
+
+  console.log(tree);
+
+  // throw new Error("Not implemented");
 }

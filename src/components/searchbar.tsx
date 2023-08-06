@@ -7,7 +7,7 @@ import { useGetPlatform } from "@/hooks/platform";
 import { Input } from "@/components/ui/input";
 import { ArrowRight, Hash, SearchIcon } from "lucide-react";
 import Link from "next/link";
-import type { SearchResult } from "@/lib/search";
+import { search, type SearchResult } from "@/lib/search";
 
 export type SearchBarProps = HTMLAttributes<HTMLDivElement> & {};
 
@@ -50,6 +50,8 @@ const SearchBar = forwardRef<HTMLInputElement, SearchBarProps>(
     // TODO: remove
     useEffect(() => {
       setSearchResults([...mockSearchResults]);
+
+      search({ query: "foo" });
     }, []);
 
     // Listen to Cmd+K or Ctrl+K to open the search overlay
