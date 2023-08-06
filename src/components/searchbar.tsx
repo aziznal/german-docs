@@ -7,17 +7,9 @@ import { useGetPlatform } from "@/hooks/platform";
 import { Input } from "@/components/ui/input";
 import { ArrowRight, Hash, SearchIcon } from "lucide-react";
 import Link from "next/link";
+import type { SearchResult } from "@/lib/search";
 
 export type SearchBarProps = HTMLAttributes<HTMLDivElement> & {};
-
-export type SearchResult = {
-  pageName: string;
-  headings: {
-    title: string;
-    matchingParagraph: string;
-    href: string;
-  }[];
-};
 
 const mockSearchResults: SearchResult[] = [
   {
