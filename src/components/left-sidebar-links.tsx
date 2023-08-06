@@ -36,7 +36,7 @@ export default async function LeftSidebarLinks() {
             value={listing.name}
             key={listing.name}
           >
-            <AccordionTrigger className="uppercase">
+            <AccordionTrigger className="text-start uppercase">
               {formatLink(listing.name)}
             </AccordionTrigger>
 
