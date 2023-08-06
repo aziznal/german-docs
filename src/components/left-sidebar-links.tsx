@@ -33,14 +33,22 @@ export default async function LeftSidebarLinks() {
       >
         {listings.map((listing) => (
           <AccordionItem
+            id={listing.name}
             value={listing.name}
             key={listing.name}
           >
-            <AccordionTrigger className="text-start uppercase">
+            <AccordionTrigger
+              className="text-start uppercase"
+              id={listing.name}
+              aria-controls="sidebar-links"
+            >
               {formatLink(listing.name)}
             </AccordionTrigger>
 
-            <AccordionContent>
+            <AccordionContent
+              id="sidebar-links"
+              aria-labelledby={listing.name}
+            >
               <ul className="flex flex-col gap-2 pl-4 text-xs font-normal">
                 {listing.files?.map((file) => (
                   <HighlightedLink

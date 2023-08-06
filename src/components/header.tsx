@@ -76,7 +76,7 @@ const Header = forwardRef<HTMLElement, HeaderProps>(
         {/* Theme switcher */}
         <div className="ml-4 flex items-center justify-center sm:ml-0">
           <DropdownMenu>
-            <DropdownMenuTrigger>
+            <DropdownMenuTrigger id="theme-trigger">
               {currentTheme === "light" && <Sun />}
               {currentTheme === "dark" && <Moon />}
               {currentTheme === "system" && <Moon />}
