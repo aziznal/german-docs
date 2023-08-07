@@ -27,7 +27,7 @@ const Header = forwardRef<HTMLElement, HeaderProps>(
         {...props}
         ref={ref}
         className={cn(
-          `sticky top-0 flex shrink-0 basis-[length:var(--header-height)] items-center bg-neutral-900 pr-6 text-white dark:bg-neutral-900 sm:gap-7`,
+          `sticky top-0 flex shrink-0 basis-[length:var(--header-height)] items-center bg-neutral-900 pr-6 text-white dark:bg-neutral-950 sm:gap-7`,
           className,
         )}
       >

@@ -10,7 +10,7 @@ const Footer = forwardRef<HTMLElement, React.HTMLAttributes<HTMLElement>>(
         {...props}
         ref={ref}
         className={cn(
-          `flex flex-col items-center justify-center gap-2 bg-neutral-900 px-4 py-12 text-center text-sm text-neutral-500`,
+          `flex flex-col items-center justify-center gap-2 bg-neutral-900 dark:bg-neutral-950 px-4 py-12 text-center text-sm text-neutral-500`,
           className,
         )}
       >
