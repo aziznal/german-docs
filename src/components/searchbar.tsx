@@ -1,56 +1,52 @@
 "use client";
 
 import { cn } from "@/lib/utils";
-import { HTMLAttributes, forwardRef, useEffect, useState } from "react";
+import {
+  ChangeEvent,
+  HTMLAttributes,
+  forwardRef,
+  useCallback,
+  useEffect,
+  useState,
+} from "react";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { useGetPlatform } from "@/hooks/platform";
 import { Input } from "@/components/ui/input";
 import { ArrowRight, Hash, SearchIcon } from "lucide-react";
 import Link from "next/link";
 import { type SearchResult } from "@/lib/search";
+import { useSearchContext } from "@/providers/search-provider";
 
 export type SearchBarProps = HTMLAttributes<HTMLDivElement> & {};
-
-const mockSearchResults: SearchResult[] = [
-  {
-    pageName: "Der Die Das",
-    headings: [
-      {
-        title: "Nominative",
-        matchingParagraph: "Der Die Das",
-        href: "#",
-      },
-      {
-        title: "Accusative",
-        matchingParagraph: "Der Die Das",
-        href: "#accusative",
-      },
-    ],
-  },
-  {
-    pageName: "Ein Eine Ein",
-    headings: [
-      {
-        title: "Not Nominative",
-        matchingParagraph: "Ein Eine Ein",
-        href: "#",
-      },
-    ],
-  },
-];
 
 const SearchBar = forwardRef<HTMLInputElement, SearchBarProps>(
   ({ className, ...props }, ref) => {
     const { isMacos } = useGetPlatform();
-    const [isSearchOverlayOpen, setIsSearchOverlayOpen] = useState(false);
+    const { search: performFuzzySearch } = useSearchContext();
 
+    const [isSearchOverlayOpen, setIsSearchOverlayOpen] = useState(false);
     const [searchResults, setSearchResults] = useState([] as SearchResult[]);
     const [searchInput, setSearchInput] = useState("");
 
-    // TODO: remove
-    useEffect(() => {
-      setSearchResults([...mockSearchResults]);
-    }, []);
+    const handleSearch = useCallback(
+      async (e: ChangeEvent<HTMLInputElement>) => {
+        const inputValue = e.target.value;
+
+        setSearchInput(inputValue);
+
+        if (!inputValue) {
+          setSearchResults([]);
+          return;
+        }
+
+        const results = await performFuzzySearch(inputValue);
+
+        if (!results) return;
+
+        setSearchResults(results);
+      },
+      [performFuzzySearch],
+    );
 
     // Listen to Cmd+K or Ctrl+K to open the search overlay
     useEffect(() => {
@@ -114,7 +110,7 @@ const SearchBar = forwardRef<HTMLInputElement, SearchBarProps>(
 
               <Input
                 value={searchInput}
-                onChange={(e) => setSearchInput(e.target.value)}
+                onChange={handleSearch}
                 placeholder="Search for anything..."
                 className="rounded-0 h-16 border-0 bg-transparent outline-0 ring-0 focus-visible:ring-0 focus-visible:ring-offset-0"
               />
