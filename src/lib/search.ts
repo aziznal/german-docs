@@ -1,6 +1,3 @@
-import * as fs from "fs/promises";
-import path from "path";
-
 export type SearchResult = {
   pageName: string;
   headings: {
@@ -10,24 +7,16 @@ export type SearchResult = {
   }[];
 };
 
-const MARKDOWN_SEARCH_INDEX_FOLDER_PATH = path.join(
-  process.cwd(),
-  "search-index",
-);
-
-const MARKDOWN_SEARCH_INDEX_FILE_PATH = `${MARKDOWN_SEARCH_INDEX_FOLDER_PATH}/markdown-index.json`;
+export type SearchIndex =
+  typeof import("../../search-index/markdown-index.json");
 
 export async function search({
   query,
+  searchIndex,
 }: {
   query: string;
+  searchIndex: SearchIndex;
 }): Promise<SearchResult[] | null> {
-  // 1. read build index
-  const searchIndex = JSON.parse(
-    (await fs.readFile(MARKDOWN_SEARCH_INDEX_FILE_PATH)).toString(),
-  ) as typeof import("../../search-index/markdown-index.json");
-
-  // 2. find all headings that match the query or contain a paragraph that matches the query
   const matches = searchIndex
     .filter((page) => {
       const pageMatches = fuzzify(page.pageName).includes(fuzzify(query));

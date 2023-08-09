@@ -2,7 +2,14 @@ import { readdir, readFile } from "fs/promises";
 
 import path from "path";
 
-const MARKDOWN_FOLDER_PATH = path.join(process.cwd(), "markdown");
+export const MARKDOWN_FOLDER_PATH = path.join(process.cwd(), "markdown");
+
+export const MARKDOWN_SEARCH_INDEX_FOLDER_PATH = path.join(
+  process.cwd(),
+  "search-index",
+);
+
+export const MARKDOWN_SEARCH_INDEX_FILE_PATH = `${MARKDOWN_SEARCH_INDEX_FOLDER_PATH}/markdown-index.json`;
 
 export type FileListing = {
   name: string;
