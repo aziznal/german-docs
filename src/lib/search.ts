@@ -37,16 +37,25 @@ export async function search({
     .map((match) => {
       return {
         pageName: match.pageName,
-        headings: match.headings.map((heading) => {
-          return {
-            title: heading.title,
-            matchingParagraph:
-              heading.paragraphs.find((paragraph) =>
-                paragraph.includes(fuzzify(query)),
-              ) ?? "",
-            href: heading.href,
-          };
-        }),
+        headings: match.headings
+          .filter((heading) => {
+            return (
+              fuzzify(heading.title).includes(fuzzify(query)) ||
+              heading.paragraphs.some((paragraph) =>
+                fuzzify(paragraph).includes(fuzzify(query)),
+              )
+            );
+          })
+          .map((heading) => {
+            return {
+              title: heading.title,
+              matchingParagraph:
+                heading.paragraphs.find((paragraph) =>
+                  paragraph.includes(fuzzify(query)),
+                ) ?? "",
+              href: heading.href,
+            };
+          }),
       };
     });
 
