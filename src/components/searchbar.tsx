@@ -48,6 +48,14 @@ const SearchBar = forwardRef<HTMLInputElement, SearchBarProps>(
       [performFuzzySearch],
     );
 
+    // Reset input and search results when the search overlay is closed
+    useEffect(() => {
+      if (!isSearchOverlayOpen) {
+        setSearchInput("");
+        setSearchResults([]);
+      }
+    }, [isSearchOverlayOpen]);
+
     // Listen to Cmd+K or Ctrl+K to open the search overlay
     useEffect(() => {
       const openSearchOverlay = (e: KeyboardEvent) => {
