@@ -14,9 +14,6 @@ import { useGetPlatform } from "@/hooks/platform";
 import { Input } from "@/components/ui/input";
 import {
   ArrowDown,
-  ArrowDownAZ,
-  ArrowDownRight,
-  ArrowDownRightFromCircle,
   ArrowRight,
   ArrowUp,
   CornerDownLeft,
@@ -241,7 +238,15 @@ const SearchBar = forwardRef<HTMLInputElement, SearchBarProps>(
           <div
             {...props}
             ref={ref}
-            className="grow cursor-pointer rounded bg-neutral-800 px-4 py-2 text-muted-foreground transition-colors duration-200 ease-in-out hover:bg-neutral-700 focus:bg-neutral-700 focus:outline-none"
+            className="grow cursor-pointer rounded bg-neutral-800 px-4 py-2 text-muted-foreground transition-colors duration-200 ease-in-out hover:bg-neutral-700 focus:bg-neutral-700 focus-visible:outline-none focus-visible:ring-ring focus-visible:ring-2 focus-visible:ring-offset-2"
+            tabIndex={0}
+            onKeyDown={(event) => {
+              if (event.key === "Enter" || event.key === " ") {
+                event.stopPropagation();
+                event.preventDefault();
+                setIsSearchOverlayOpen(true);
+              }
+            }}
           >
             Quick search...
           </div>
@@ -375,14 +380,14 @@ const SearchBar = forwardRef<HTMLInputElement, SearchBarProps>(
 
             <div className="!mx-0 hidden items-center gap-8 border-t border-t-neutral-300 p-4 text-xs dark:border-t-neutral-700 lg:flex">
               <div className="flex items-center gap-2">
-                <kbd className="rounded bg-neutral-200 p-1.5 font-bold text-neutral-500 dark:text-neutral-700 shadow-md shadow-neutral-400 dark:bg-neutral-400 dark:shadow-black">
+                <kbd className="rounded bg-neutral-200 p-1.5 font-bold text-neutral-500 shadow-md shadow-neutral-400 dark:bg-neutral-400 dark:text-neutral-700 dark:shadow-black">
                   Esc
                 </kbd>
                 <span className="text-muted-foreground">to close</span>
               </div>
 
               <div className="flex items-center gap-2">
-                <kbd className="flex items-center rounded bg-neutral-200 p-1.5 font-bold text-neutral-500 dark:text-neutral-700 shadow-md shadow-neutral-400 dark:bg-neutral-400 dark:shadow-black">
+                <kbd className="flex items-center rounded bg-neutral-200 p-1.5 font-bold text-neutral-500 shadow-md shadow-neutral-400 dark:bg-neutral-400 dark:text-neutral-700 dark:shadow-black">
                   <span>Enter</span>
                   <CornerDownLeft size={10} />
                 </kbd>
@@ -390,11 +395,11 @@ const SearchBar = forwardRef<HTMLInputElement, SearchBarProps>(
               </div>
 
               <div className="flex items-center gap-2">
-                <kbd className="flex items-center rounded bg-neutral-200 p-1.5 text-neutral-500 dark:text-neutral-700 shadow-md shadow-neutral-400 dark:bg-neutral-400 dark:shadow-black">
+                <kbd className="flex items-center rounded bg-neutral-200 p-1.5 text-neutral-500 shadow-md shadow-neutral-400 dark:bg-neutral-400 dark:text-neutral-700 dark:shadow-black">
                   <ArrowUp size={10} />
                 </kbd>
 
-                <kbd className="flex items-center rounded bg-neutral-200 p-1.5 text-neutral-500 dark:text-neutral-700 shadow-md shadow-neutral-400 dark:bg-neutral-400 dark:shadow-black">
+                <kbd className="flex items-center rounded bg-neutral-200 p-1.5 text-neutral-500 shadow-md shadow-neutral-400 dark:bg-neutral-400 dark:text-neutral-700 dark:shadow-black">
                   <ArrowDown size={10} />
                 </kbd>
 

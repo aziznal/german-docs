@@ -45,8 +45,15 @@ const Header = forwardRef<HTMLElement, HeaderProps>(
               event.stopPropagation();
               toggleSidebar();
             }}
+            onKeyDown={(event) => {
+              if (event.key === "Enter" || event.key === " ") {
+                event.stopPropagation();
+                toggleSidebar();
+              }
+            }}
             size={32}
             id="header-sidebar-toggle"
+            tabIndex={0}
           />
         </div>
 
@@ -60,7 +67,10 @@ const Header = forwardRef<HTMLElement, HeaderProps>(
             alt="German flag"
           />
 
-          <SearchBar className="grow sm:w-[300px] sm:grow-0" />
+          <SearchBar
+            className="grow sm:w-[300px] sm:grow-0"
+            tabIndex={0}
+          />
         </div>
 
         {/* Github link */}
