@@ -20,6 +20,10 @@ import { useRouter } from "next/navigation";
 
 export type SearchBarProps = HTMLAttributes<HTMLDivElement> & {};
 
+function createSearchResultKey(result: SearchResult["headings"][0]): string {
+  return result.title + result.matchingParagraph;
+}
+
 const SearchBar = forwardRef<HTMLInputElement, SearchBarProps>(
   ({ className, ...props }, ref) => {
     const { isMacos } = useGetPlatform();
@@ -115,9 +119,7 @@ const SearchBar = forwardRef<HTMLInputElement, SearchBarProps>(
       )
         return;
 
-      const key =
-        flattenedSearchResults[0].title +
-        flattenedSearchResults[0].matchingParagraph;
+      const key = createSearchResultKey(flattenedSearchResults[0]);
 
       setFocusedResultKey(key);
     }, [searchResults, focusedResultKey, flattenedSearchResults]);
@@ -128,20 +130,13 @@ const SearchBar = forwardRef<HTMLInputElement, SearchBarProps>(
         return;
 
       const findCurrentFocusedIndex = (): number => {
-        const index = flattenedSearchResults.findIndex(
-          (result) =>
-            result.title + result.matchingParagraph === focusedResultKey,
+        return flattenedSearchResults.findIndex(
+          (result) => createSearchResultKey(result) === focusedResultKey,
         );
-
-        if (index === -1) return 0;
-
-        return index;
       };
 
-      const focus = (searchResult?: SearchResult["headings"][0]) => {
-        if (!searchResult) return;
-
-        const key = searchResult.title + searchResult.matchingParagraph;
+      const focus = (searchResult: SearchResult["headings"][0]) => {
+        const key = createSearchResultKey(searchResult);
 
         setFocusedResultKey(key);
 
@@ -151,16 +146,12 @@ const SearchBar = forwardRef<HTMLInputElement, SearchBarProps>(
         if (!element) return;
 
         element.scrollIntoView({
-          block: "end",
+          block: "end", // makes sure the element requiring scrolling is at the bottom of the viewport
         });
       };
 
       const moveFocusDown = () => {
         const currentFocusedIndex = findCurrentFocusedIndex();
-
-        if (currentFocusedIndex === -1) return;
-
-        const newFocusElement = flattenedSearchResults[currentFocusedIndex + 1];
 
         // wrap around to the top if we're at the bottom
         if (currentFocusedIndex === flattenedSearchResults.length - 1) {
@@ -168,13 +159,11 @@ const SearchBar = forwardRef<HTMLInputElement, SearchBarProps>(
           return;
         }
 
-        focus(newFocusElement);
+        focus(flattenedSearchResults[currentFocusedIndex + 1]);
       };
 
       const moveFocusUp = () => {
         const currentFocusedIndex = findCurrentFocusedIndex();
-
-        if (currentFocusedIndex === -1) return;
 
         // wrap around to the bottom if we're at the top
         if (currentFocusedIndex === 0) {
@@ -187,8 +176,6 @@ const SearchBar = forwardRef<HTMLInputElement, SearchBarProps>(
 
       const navigateToFocusedResult = () => {
         const currentFocusedIndex = findCurrentFocusedIndex();
-
-        if (currentFocusedIndex === -1) return;
 
         const currentFocusedResult =
           flattenedSearchResults[currentFocusedIndex];
@@ -301,8 +288,8 @@ const SearchBar = forwardRef<HTMLInputElement, SearchBarProps>(
                       return (
                         <Link
                           onClick={() => setIsSearchOverlayOpen(false)}
-                          id={heading.title + heading.matchingParagraph}
-                          key={heading.title + heading.matchingParagraph}
+                          id={createSearchResultKey(heading)}
+                          key={createSearchResultKey(heading)}
                           href={heading.href}
                           className={cn(
                             `
@@ -326,7 +313,7 @@ const SearchBar = forwardRef<HTMLInputElement, SearchBarProps>(
                                 dark:focus:bg-rose-500
                                 dark:focus:outline-0
                           `,
-                            heading.title + heading.matchingParagraph ===
+                            createSearchResultKey(heading) ===
                               focusedResultKey &&
                               "bg-rose-500 text-white dark:bg-rose-500 dark:text-white",
                           )}
