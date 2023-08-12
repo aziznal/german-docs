@@ -124,10 +124,10 @@ const SearchBar = forwardRef<HTMLInputElement, SearchBarProps>(
 
     // Listen to arrow keys to navigate through search results
     useEffect(() => {
-      const findCurrentFocusedIndex = (): number => {
-        if (!flattenedSearchResults || flattenedSearchResults.length === 0)
-          return 0;
+      if (!flattenedSearchResults || flattenedSearchResults.length === 0)
+        return;
 
+      const findCurrentFocusedIndex = (): number => {
         const index = flattenedSearchResults.findIndex(
           (result) =>
             result.title + result.matchingParagraph === focusedResultKey,
@@ -160,8 +160,13 @@ const SearchBar = forwardRef<HTMLInputElement, SearchBarProps>(
 
         if (currentFocusedIndex === -1) return;
 
-        const newFocusElement =
-          flattenedSearchResults?.[currentFocusedIndex + 1];
+        const newFocusElement = flattenedSearchResults[currentFocusedIndex + 1];
+
+        // wrap around to the top if we're at the bottom
+        if (currentFocusedIndex === flattenedSearchResults.length - 1) {
+          focus(flattenedSearchResults[0]);
+          return;
+        }
 
         focus(newFocusElement);
       };
@@ -171,7 +176,13 @@ const SearchBar = forwardRef<HTMLInputElement, SearchBarProps>(
 
         if (currentFocusedIndex === -1) return;
 
-        focus(flattenedSearchResults?.[currentFocusedIndex - 1]);
+        // wrap around to the bottom if we're at the top
+        if (currentFocusedIndex === 0) {
+          focus(flattenedSearchResults[flattenedSearchResults.length - 1]);
+          return;
+        }
+
+        focus(flattenedSearchResults[currentFocusedIndex - 1]);
       };
 
       const navigateToFocusedResult = () => {
@@ -180,7 +191,7 @@ const SearchBar = forwardRef<HTMLInputElement, SearchBarProps>(
         if (currentFocusedIndex === -1) return;
 
         const currentFocusedResult =
-          flattenedSearchResults?.[currentFocusedIndex];
+          flattenedSearchResults[currentFocusedIndex];
 
         if (!currentFocusedResult) return;
 
