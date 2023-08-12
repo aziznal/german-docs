@@ -12,11 +12,24 @@ import {
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { useGetPlatform } from "@/hooks/platform";
 import { Input } from "@/components/ui/input";
-import { ArrowRight, Hash, SearchIcon } from "lucide-react";
+import {
+  ArrowDown,
+  ArrowDownAZ,
+  ArrowDownRight,
+  ArrowDownRightFromCircle,
+  ArrowRight,
+  ArrowUp,
+  CornerDownLeft,
+  Hash,
+  SearchIcon,
+  X,
+} from "lucide-react";
 import Link from "next/link";
 import { type SearchResult } from "@/lib/search";
 import { useSearchContext } from "@/providers/search-provider";
 import { useRouter } from "next/navigation";
+
+import * as DialogPrimitive from "@radix-ui/react-dialog";
 
 export type SearchBarProps = HTMLAttributes<HTMLDivElement> & {};
 
@@ -247,7 +260,24 @@ const SearchBar = forwardRef<HTMLInputElement, SearchBarProps>(
             setSearchInput("");
           }}
         >
-          <DialogContent className="fixed top-48 border-neutral-300 p-0 pb-6 dark:border-neutral-700 dark:bg-neutral-800 md:max-w-[700px] lg:absolute lg:top-[40%] [&>*]:mx-6">
+          <DialogContent
+            className={`
+              fixed
+              top-0
+              border-neutral-300
+              pb-6
+
+              dark:border-neutral-700
+              dark:bg-neutral-800
+
+              md:top-[10%]
+              md:max-w-[800px]
+
+              lg:pb-0
+
+              [&>*]:mx-6
+            `}
+          >
             {/* Search input */}
             <div className="mt-12 flex items-center rounded border border-neutral-700 px-4 focus-within:border-rose-500">
               <SearchIcon />
@@ -268,12 +298,19 @@ const SearchBar = forwardRef<HTMLInputElement, SearchBarProps>(
                   }
                 }}
                 placeholder="Search for anything..."
-                className="rounded-0 h-16 border-0 bg-transparent outline-0 ring-0 focus-visible:ring-0 focus-visible:ring-offset-0"
+                className="rounded-0 h-16 border-0 bg-transparent text-lg outline-0 ring-0 focus-visible:ring-0 focus-visible:ring-offset-0 lg:text-xl"
               />
             </div>
 
             {/* Search results */}
-            <div className="flex max-h-[70dvh] min-h-[200px] flex-col gap-6 overflow-y-auto lg:max-h-[50vh]">
+            <div className="!mr-0 mt-4 flex max-h-[70dvh] min-h-[100px] flex-col gap-6 overflow-y-auto pr-6 lg:max-h-[50vh]">
+              {!searchResults ||
+                (searchResults.length === 0 && (
+                  <div className="flex h-full w-full items-center justify-center text-muted-foreground">
+                    No recent searches
+                  </div>
+                ))}
+
               {searchResults.map((searchResult) => {
                 return (
                   <div
@@ -329,6 +366,40 @@ const SearchBar = forwardRef<HTMLInputElement, SearchBarProps>(
                   </div>
                 );
               })}
+            </div>
+
+            <DialogPrimitive.Close className="absolute right-0 top-4 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none data-[state=open]:bg-accent data-[state=open]:text-muted-foreground">
+              <X className="h-4 w-4" />
+              <span className="sr-only">Close</span>
+            </DialogPrimitive.Close>
+
+            <div className="!mx-0 hidden items-center gap-8 border-t border-t-neutral-300 p-4 text-xs dark:border-t-neutral-700 lg:flex">
+              <div className="flex items-center gap-2">
+                <kbd className="rounded bg-neutral-200 p-1.5 font-bold text-neutral-500 dark:text-neutral-700 shadow-md shadow-neutral-400 dark:bg-neutral-400 dark:shadow-black">
+                  Esc
+                </kbd>
+                <span className="text-muted-foreground">to close</span>
+              </div>
+
+              <div className="flex items-center gap-2">
+                <kbd className="flex items-center rounded bg-neutral-200 p-1.5 font-bold text-neutral-500 dark:text-neutral-700 shadow-md shadow-neutral-400 dark:bg-neutral-400 dark:shadow-black">
+                  <span>Enter</span>
+                  <CornerDownLeft size={10} />
+                </kbd>
+                <span className="text-muted-foreground">to select</span>
+              </div>
+
+              <div className="flex items-center gap-2">
+                <kbd className="flex items-center rounded bg-neutral-200 p-1.5 text-neutral-500 dark:text-neutral-700 shadow-md shadow-neutral-400 dark:bg-neutral-400 dark:shadow-black">
+                  <ArrowUp size={10} />
+                </kbd>
+
+                <kbd className="flex items-center rounded bg-neutral-200 p-1.5 text-neutral-500 dark:text-neutral-700 shadow-md shadow-neutral-400 dark:bg-neutral-400 dark:shadow-black">
+                  <ArrowDown size={10} />
+                </kbd>
+
+                <span className="text-muted-foreground">to navigate</span>
+              </div>
             </div>
           </DialogContent>
         </Dialog>
