@@ -57,6 +57,9 @@ export async function search({
             };
           }),
       };
+    })
+    .filter((result) => {
+      return result.headings.length > 0;
     });
 
   // 3. return the results
