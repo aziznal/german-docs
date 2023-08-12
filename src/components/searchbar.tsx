@@ -16,6 +16,7 @@ import { ArrowRight, Hash, SearchIcon } from "lucide-react";
 import Link from "next/link";
 import { type SearchResult } from "@/lib/search";
 import { useSearchContext } from "@/providers/search-provider";
+import { useRouter } from "next/navigation";
 
 export type SearchBarProps = HTMLAttributes<HTMLDivElement> & {};
 
@@ -25,8 +26,16 @@ const SearchBar = forwardRef<HTMLInputElement, SearchBarProps>(
     const { search: performFuzzySearch } = useSearchContext();
 
     const [isSearchOverlayOpen, setIsSearchOverlayOpen] = useState(false);
+
     const [searchResults, setSearchResults] = useState([] as SearchResult[]);
+    const [flattenedSearchResults, setFlattenedSearchResults] =
+      useState<SearchResult["headings"]>();
+
     const [searchInput, setSearchInput] = useState("");
+
+    const [focusedResultKey, setFocusedResultKey] = useState("");
+
+    const router = useRouter();
 
     const handleSearch = useCallback(
       async (e: ChangeEvent<HTMLInputElement>) => {
@@ -53,6 +62,8 @@ const SearchBar = forwardRef<HTMLInputElement, SearchBarProps>(
       if (!isSearchOverlayOpen) {
         setSearchInput("");
         setSearchResults([]);
+        setFlattenedSearchResults([]);
+        setFocusedResultKey("");
       }
     }, [isSearchOverlayOpen]);
 
@@ -79,6 +90,133 @@ const SearchBar = forwardRef<HTMLInputElement, SearchBarProps>(
         document.removeEventListener("keydown", openSearchOverlay);
       };
     }, [isMacos]);
+
+    // Create flattened search results for easier focus navigation
+    useEffect(() => {
+      if (!searchResults) return;
+
+      const flattenedResults = searchResults.reduce(
+        (acc, curr) => [...acc, ...curr.headings],
+        [] as SearchResult["headings"],
+      );
+
+      // clear focused key when results change
+      setFocusedResultKey("");
+
+      setFlattenedSearchResults(flattenedResults);
+    }, [searchResults]);
+
+    // set first result as focused if none is focused
+    useEffect(() => {
+      if (
+        focusedResultKey !== "" ||
+        !flattenedSearchResults ||
+        flattenedSearchResults.length === 0
+      )
+        return;
+
+      const key =
+        flattenedSearchResults[0].title +
+        flattenedSearchResults[0].matchingParagraph;
+
+      setFocusedResultKey(key);
+    }, [searchResults, focusedResultKey, flattenedSearchResults]);
+
+    // Listen to arrow keys to navigate through search results
+    useEffect(() => {
+      const findCurrentFocusedIndex = (): number => {
+        if (!flattenedSearchResults || flattenedSearchResults.length === 0)
+          return 0;
+
+        const index = flattenedSearchResults.findIndex(
+          (result) =>
+            result.title + result.matchingParagraph === focusedResultKey,
+        );
+
+        if (index === -1) return 0;
+
+        return index;
+      };
+
+      const focus = (searchResult?: SearchResult["headings"][0]) => {
+        if (!searchResult) return;
+
+        const key = searchResult.title + searchResult.matchingParagraph;
+
+        setFocusedResultKey(key);
+
+        // make sure the result is in the viewport
+        const element = document.getElementById(key);
+
+        if (!element) return;
+
+        element.scrollIntoView({
+          block: "end",
+        });
+      };
+
+      const moveFocusDown = () => {
+        const currentFocusedIndex = findCurrentFocusedIndex();
+
+        if (currentFocusedIndex === -1) return;
+
+        const newFocusElement =
+          flattenedSearchResults?.[currentFocusedIndex + 1];
+
+        focus(newFocusElement);
+      };
+
+      const moveFocusUp = () => {
+        const currentFocusedIndex = findCurrentFocusedIndex();
+
+        if (currentFocusedIndex === -1) return;
+
+        focus(flattenedSearchResults?.[currentFocusedIndex - 1]);
+      };
+
+      const navigateToFocusedResult = () => {
+        const currentFocusedIndex = findCurrentFocusedIndex();
+
+        if (currentFocusedIndex === -1) return;
+
+        const currentFocusedResult =
+          flattenedSearchResults?.[currentFocusedIndex];
+
+        if (!currentFocusedResult) return;
+
+        router.push(currentFocusedResult.href);
+
+        setIsSearchOverlayOpen(false);
+      };
+
+      const handleInteractionWithResult = (e: KeyboardEvent) => {
+        if (!isSearchOverlayOpen) return;
+
+        if (e.key === "ArrowDown") {
+          moveFocusDown();
+        }
+
+        if (e.key === "ArrowUp") {
+          moveFocusUp();
+        }
+
+        if (e.key === "Enter") {
+          navigateToFocusedResult();
+        }
+      };
+
+      document.addEventListener("keydown", handleInteractionWithResult);
+
+      return () => {
+        document.removeEventListener("keydown", handleInteractionWithResult);
+      };
+    }, [
+      isSearchOverlayOpen,
+      setFocusedResultKey,
+      focusedResultKey,
+      flattenedSearchResults,
+      router,
+    ]);
 
     return (
       <>
@@ -119,6 +257,18 @@ const SearchBar = forwardRef<HTMLInputElement, SearchBarProps>(
               <Input
                 value={searchInput}
                 onChange={handleSearch}
+                onKeyDown={(e) => {
+                  if (e.key === "ArrowUp" || e.key === "ArrowDown") {
+                    e.preventDefault();
+                    return;
+                  }
+                }}
+                onKeyUp={(e) => {
+                  if (e.key === "ArrowUp" || e.key === "ArrowDown") {
+                    e.preventDefault();
+                    return;
+                  }
+                }}
                 placeholder="Search for anything..."
                 className="rounded-0 h-16 border-0 bg-transparent outline-0 ring-0 focus-visible:ring-0 focus-visible:ring-offset-0"
               />
@@ -139,13 +289,12 @@ const SearchBar = forwardRef<HTMLInputElement, SearchBarProps>(
                     {searchResult.headings.map((heading) => {
                       return (
                         <Link
-                          onClick={() => {
-                            setIsSearchOverlayOpen(false);
-                            setSearchInput("");
-                          }}
-                          key={searchResult.pageName + heading.title}
+                          onClick={() => setIsSearchOverlayOpen(false)}
+                          id={heading.title + heading.matchingParagraph}
+                          key={heading.title + heading.matchingParagraph}
                           href={heading.href}
-                          className={`
+                          className={cn(
+                            `
                                 flex
                                 cursor-pointer
                                 items-center
@@ -165,7 +314,11 @@ const SearchBar = forwardRef<HTMLInputElement, SearchBarProps>(
                                 dark:hover:bg-rose-500
                                 dark:focus:bg-rose-500
                                 dark:focus:outline-0
-                          `}
+                          `,
+                            heading.title + heading.matchingParagraph ===
+                              focusedResultKey &&
+                              "bg-rose-500 text-white dark:bg-rose-500 dark:text-white",
+                          )}
                         >
                           <div className="flex gap-2">
                             <Hash /> <span>{heading.title}</span>
