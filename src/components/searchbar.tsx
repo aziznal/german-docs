@@ -64,7 +64,7 @@ const SearchBar = forwardRef<HTMLInputElement, SearchBarProps>(
 
         const results = await performFuzzySearch(inputValue);
 
-        if (!results) return;
+        if (!results) return setSearchResults([]);
 
         setSearchResults(results);
       },
@@ -107,7 +107,7 @@ const SearchBar = forwardRef<HTMLInputElement, SearchBarProps>(
 
     // Create flattened search results for easier focus navigation
     useEffect(() => {
-      if (!searchResults) return;
+      if (!searchResults) setFlattenedSearchResults([]);
 
       const flattenedResults = searchResults.reduce(
         (acc, curr) => [...acc, ...curr.headings],
