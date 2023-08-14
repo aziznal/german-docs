@@ -346,12 +346,15 @@ const SearchBar = forwardRef<HTMLInputElement, SearchBarProps>(
                                 duration-75
 
                                 hover:bg-rose-500
+                                hover:text-white
+                                hover:outline-0
                                 focus:bg-rose-500
                                 focus:text-white
                                 focus:outline-0
 
                                 dark:bg-neutral-700
                                 dark:hover:bg-rose-500
+                                dark:hover:outline-0
                                 dark:focus:bg-rose-500
                                 dark:focus:outline-0
                           `,
@@ -360,8 +363,16 @@ const SearchBar = forwardRef<HTMLInputElement, SearchBarProps>(
                               "bg-rose-500 text-white dark:bg-rose-500 dark:text-white",
                           )}
                         >
-                          <div className="flex gap-2">
-                            <Hash /> <span>{heading.title}</span>
+                          <div className="flex flex-col">
+                            <div className="flex gap-2">
+                              <Hash /> <span>{heading.title}</span>
+                            </div>
+
+                            {heading.matchingParagraph && (
+                              <div className="flex dark:text-neutral-100">
+                                {heading.matchingParagraph}
+                              </div>
+                            )}
                           </div>
 
                           <ArrowRight />
