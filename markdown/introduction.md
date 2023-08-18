@@ -9,11 +9,9 @@ This website is still a work in progress.
 This site is my attempt at journaling my journey learning German in my own way, and
 maybe helping someone else learn something along the way.
 
-Contributions are more than welcome.
-Unfortunately, the only way for you to do that
-at the moment is through a github issue. I'll be
-tackling that and various other improvements
-if and when engagement improves and I have time.
+Contributions are more than welcome. Unfortunately, the only way for you to do
+that at the moment is through a github issue. I'll be tackling that and various
+other improvements if and when engagement improves and I have time.
 
 ## Getting started with German
 
