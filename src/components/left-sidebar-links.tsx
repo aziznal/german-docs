@@ -20,11 +20,11 @@ const links: Link[] = [
     children: [
       {
         name: "Getting Started",
-        href: "/hello-world/getting-started",
+        href: "/Hello-World/Getting-Started",
       },
       {
         name: "Your Roadmap",
-        href: "/hello-world/roadmap",
+        href: "/Hello-World/Roadmap",
       },
     ],
   },
