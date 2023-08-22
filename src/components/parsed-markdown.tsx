@@ -41,6 +41,27 @@ export const ParsedMarkdown = ({ children }: { children: string }) => {
             id={generateHtmlId(props.children.toString())}
           />
         ),
+        a: ({ node, ...props }) => (
+          <a
+            {...props}
+            className={cn("dark:text-foreground", props.className)}
+            id={generateHtmlId(props.children.toString())}
+          />
+        ),
+        strong: ({ node, ...props }) => (
+          <strong
+            {...props}
+            className={cn("dark:text-foreground", props.className)}
+            id={generateHtmlId(props.children.toString())}
+          />
+        ),
+        i: ({ node, ...props }) => (
+          <strong
+            {...props}
+            className={cn("dark:text-foreground", props.className)}
+            id={generateHtmlId(props.children.toString())}
+          />
+        ),
         pre: ({ node, ...props }) => (
           <pre
             {...props}
