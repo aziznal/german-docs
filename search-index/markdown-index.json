@@ -48,6 +48,27 @@
     ]
   },
   {
+    "pageName": "The-Alphabet",
+    "headings": [
+      {
+        "title": "The German Alphabet",
+        "paragraphs": [
+          "The Alphabet in German is very similar to its English counterpart, with a few exceptions to how letters are pronounced and a few extra letters."
+        ],
+        "href": "/Hello-World/The-Alphabet#the-german-alphabet"
+      },
+      {
+        "title": "The Alphabet",
+        "paragraphs": [
+          "Though the German alphabet will be listed below, it's highly recommended that you listen to it being pronounced to get a better grasp. Pronouncing letters correctly is not something you should pay too much attention to in the beginning as you will pick it up with time as you learn more vocabulary and start having conversations.",
+          "I personally watched this video on youtube to learn the pronounciation of many of the letters, once: Link",
+          "Special Chars: ü, ö, ä, ß (eszett)"
+        ],
+        "href": "/Hello-World/The-Alphabet#the-alphabet"
+      }
+    ]
+  },
+  {
     "pageName": "Perfect-Past",
     "headings": [
       {

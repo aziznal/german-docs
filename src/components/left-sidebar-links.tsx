@@ -23,6 +23,10 @@ const links: Link[] = [
         href: "/Hello-World/Getting-Started",
       },
       {
+        name: "The Alphabet",
+        href: "/Hello-World/The-Alphabet",
+      },
+      {
         name: "Your Roadmap",
         href: "/Hello-World/Roadmap",
       },
