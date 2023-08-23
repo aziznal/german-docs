@@ -8,6 +8,7 @@ import { usePathname } from "next/navigation";
 import clsx from "clsx";
 import { useLeftSidebarState } from "@/providers/left-sidebar-provider";
 import { useTailwindBreakpoints } from "@/hooks/breakpoints";
+import { useEffect, useState } from "react";
 
 export type HighlightedLinkProps = {
   href: string;
@@ -23,10 +24,24 @@ export default function HighlightedLink({
   children,
   className,
 }: HighlightedLinkProps) {
-  const active = href.includes(usePathname());
+  const pathName = usePathname();
+
+  const [active, setActive] = useState(false);
 
   const { closeSidebar } = useLeftSidebarState();
   const { isOnSmallScreen } = useTailwindBreakpoints();
+
+  useEffect(() => {
+    if (!pathName) return;
+
+    if (href.includes(pathName)) {
+      setActive(true);
+    }
+
+    return () => {
+      setActive(false);
+    };
+  }, [pathName, href]);
 
   return (
     <Link
