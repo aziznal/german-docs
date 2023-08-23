@@ -18,11 +18,7 @@ export default async function MarkdownPage({ params }: PageProps) {
 
   const markdownContent = await fetch(requestPath, {
     method: "GET",
-  }).then((res) => {
-    console.log(res);
-
-    return res.text();
-  });
+  }).then((res) => res.text());
 
   if (!markdownContent) return redirect("/page-not-found");
 

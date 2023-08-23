@@ -5,8 +5,6 @@ export default async function handler(
   request: NextApiRequest,
   response: NextApiResponse,
 ) {
-  console.log("got your request");
-
   const { docId } = request.query;
 
   if (!docId) return response.status(404).end();
