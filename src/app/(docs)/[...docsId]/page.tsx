@@ -1,6 +1,5 @@
 import { ParsedMarkdown } from "@/components/parsed-markdown";
 import TableOfContent from "@/components/table-of-content";
-import { getMarkdownContent } from "@/lib/markdown.utils";
 import { redirect } from "next/navigation";
 
 type PageProps = {
@@ -10,13 +9,20 @@ type PageProps = {
 };
 
 export default async function MarkdownPage({ params }: PageProps) {
-  let markdownContent: string | null;
+  const requestPath =
+    process.env.NEXT_PUBLIC_BASE_URL +
+    "/api/doc/" +
+    (typeof params.docsId === "string"
+      ? params.docsId
+      : params.docsId.join("/"));
 
-  if (typeof params.docsId === "string") {
-    markdownContent = await getMarkdownContent(params.docsId);
-  } else {
-    markdownContent = await getMarkdownContent(params.docsId.join("/"));
-  }
+  const markdownContent = await fetch(requestPath, {
+    method: "GET",
+  }).then((res) => {
+    console.log(res);
+
+    return res.text();
+  });
 
   if (!markdownContent) return redirect("/page-not-found");
 

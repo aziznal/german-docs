@@ -3,7 +3,7 @@ import "./globals.css";
 import type { Metadata } from "next";
 import { SearchProvider } from "@/providers/search-provider";
 
-import { Analytics } from '@vercel/analytics/react';
+import { Analytics } from "@vercel/analytics/react";
 
 export const metadata: Metadata = {
   title: "German Docs",
@@ -24,7 +24,7 @@ export default function RootLayout({
         <body className={`h-full font-sans`}>
           <SearchProvider>
             {children}
-            <Analytics/>
+            <Analytics />
           </SearchProvider>
         </body>
       </html>

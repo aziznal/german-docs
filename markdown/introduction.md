@@ -73,7 +73,9 @@ Following having my bot accounts banned by every well-known social media provide
 out there, I delved into Angular and found my first job a year later through a
 connection in College.
 
-After 2.5 years of Angular and a bit of React, I chose NextJS (which is what this site is built with, btw) as my starter template for new projects because of \*_chef's kiss_\* perfect it is for the kind of project I do.
+After 2.5 years of Angular and a bit of React, I chose NextJS (which is what
+this site is built with, btw) as my starter template for new projects because of
+how \*_chef's kiss_\* perfect it is for the kind of project I do.
 
 At the start of 2022, I took to learning the German language in search of the
 start to the next chapter of my life, preferably somewhere where I make more
