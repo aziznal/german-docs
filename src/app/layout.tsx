@@ -16,18 +16,17 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <ThemeProvider>
-      <html
-        lang="en"
-        className="h-full"
-      >
-        <body className={`h-full font-sans`}>
-          <SearchProvider>
-            {children}
-            <Analytics />
-          </SearchProvider>
-        </body>
-      </html>
-    </ThemeProvider>
+    <html
+      lang="en"
+      className="h-full"
+    >
+      <body className={`h-full font-sans`}>
+        <ThemeProvider>
+          <SearchProvider>{children}</SearchProvider>
+        </ThemeProvider>
+
+        <Analytics />
+      </body>
+    </html>
   );
 }
