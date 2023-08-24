@@ -22,8 +22,7 @@ import {
   X,
 } from "lucide-react";
 import Link from "next/link";
-import { type SearchResult } from "@/lib/search";
-import { useSearchContext } from "@/providers/search-provider";
+import { SearchResult, useSearchContext } from "@/providers/search-provider";
 import { useRouter } from "next/navigation";
 
 import * as DialogPrimitive from "@radix-ui/react-dialog";
