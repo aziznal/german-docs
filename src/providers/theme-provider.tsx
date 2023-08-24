@@ -8,13 +8,13 @@ import {
   useState,
 } from "react";
 
-export type SelectedTheme = "light" | "dark" | "system";
+export type Theme = "light" | "dark" | "system";
 
 const THEME_STORAGE_KEY = "theme";
 
 export const ThemeContext = createContext<{
-  currentTheme: SelectedTheme;
-  setTheme: (theme: SelectedTheme) => void;
+  currentTheme: Theme;
+  setTheme: (theme: Theme) => void;
 }>({
   currentTheme: "system",
   setTheme: () => {},
@@ -28,12 +28,12 @@ export const useThemeContext = () => useContext(ThemeContext);
 //
 // - whether user preference is dark or light, in which case just use it
 
-function isValidTheme(theme: string): theme is SelectedTheme {
+function isValidTheme(theme: string): theme is Theme {
   return theme === "dark" || theme === "light" || theme === "system";
 }
 
 export function ThemeProvider({ children }: PropsWithChildren) {
-  const [currentTheme, setCurrentTheme] = useState<SelectedTheme>("system");
+  const [currentTheme, setCurrentTheme] = useState<Theme>("system");
 
   // detect system theme and set it in context
   useEffect(() => {
