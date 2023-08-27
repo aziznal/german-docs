@@ -9,18 +9,31 @@ import remarkFrontmatter from "remark-frontmatter";
 import remarkParseFrontmatter from "remark-parse-frontmatter";
 import { toString as getTextContent } from "mdast-util-to-string";
 
-import { getMarkdownContent, getMarkdownListings } from "./markdown.utils";
-import { generateHtmlId } from "./utils";
+import {
+  getMarkdownContent,
+  getMarkdownListings,
+} from "../lib/markdown-utils.mjs";
+import { generateHtmlId } from "../lib/html-utils.mjs";
 
-export type BuildResult = {
-  pageName: string;
-  tags?: string[];
-  headings: {
-    title: string;
-    paragraphs: string[];
-    href: string;
-  }[];
-};
+/**
+ * @typedef {Object} Heading
+ * @property {string} title - The title of the heading.
+ * @property {string[]} paragraphs - The paragraphs under the heading.
+ * @property {string} href - The URL for the heading.
+ */
+
+/**
+ * @typedef {Object} BuildResult
+ * @property {string} pageName - The name of the page.
+ * @property {string[]} [tags] - The tags associated with the build.
+ * @property {Heading[]} headings - The headings in the build result.
+ */
+
+/**
+ * @typedef {Object} Frontmatter
+ * @property {string} [title] - The title of the page.
+ * @property {string[]} [tags] - The tags associated with the page.
+ */
 
 const MARKDOWN_SEARCH_INDEX_FOLDER_PATH = path.join(
   process.cwd(),
@@ -34,8 +47,10 @@ const MARKDOWN_SEARCH_INDEX_FILE_PATH = `${MARKDOWN_SEARCH_INDEX_FOLDER_PATH}/ma
  * to search.
  *
  * This is meant to be ran every time the markdown content has changed
+ *
+ * @returns {Promise<void>}
  */
-export async function buildSearchIndex(): Promise<void> {
+async function buildSearchIndex() {
   // load all markdown files into one list
   const markdownFiles = (await getMarkdownListings()).reduce((acc, next) => {
     return {
@@ -48,7 +63,8 @@ export async function buildSearchIndex(): Promise<void> {
     throw new Error("No markdown files found while building search db!");
 
   // parse everything into searchable format
-  const parsedMarkdown: BuildResult[] = await Promise.all(
+  /** @type {BuildResult[]} */
+  const parsedMarkdown = await Promise.all(
     markdownFiles.map(async (file) => {
       const markdownContent = await getMarkdownContent(file.href);
 
@@ -82,33 +98,38 @@ export async function buildSearchIndex(): Promise<void> {
   await writeFile(MARKDOWN_SEARCH_INDEX_FILE_PATH, searchDb);
 }
 
-type Frontmatter = {
-  title?: string;
-  tags?: string[];
-};
-
-const getFrontmatter = (markdown: string): Frontmatter | null => {
+/**
+ * Gets the frontmatter from a markdown string
+ *
+ * @param {string} markdown - The title of the page.
+ * @returns {Frontmatter | null}
+ */
+const getFrontmatter = (markdown) => {
   return (
-    (unified()
+    unified()
       .use(remarkParse)
       .use(remarkFrontmatter)
       .use(remarkParseFrontmatter)
       .use(remarkStringify)
-      .processSync(markdown).data?.frontmatter as Frontmatter) ?? null
+      .processSync(markdown).data?.frontmatter ?? null
   );
 };
 
-function parseToMatchableBlock({
-  markdown,
-  parentHref,
-}: {
-  markdown: string;
-  parentHref: string;
-}): BuildResult["headings"] {
+/**
+ * Parses markdown into a format which is easier to search.
+ *
+ * @param {string} markdown - The markdown to parse.
+ * @param {string} parentHref - The href of the parent markdown file.
+ * @returns {Heading[]} The parsed markdown.
+ */
+function parseToMatchableBlock({ markdown, parentHref }) {
   const tree = unified().use(remarkParse).parse(markdown);
 
-  let headings = [] as BuildResult["headings"];
-  let currentHeading: BuildResult["headings"][0] | null = null;
+  /** @type {Heading[]} */
+  let headings = [];
+
+  /** @type {Heading | null} */
+  let currentHeading = null;
 
   tree.children.forEach((child, i) => {
     // 1. if child is heading, push currentHeading (if it has content) and create new heading
@@ -119,7 +140,7 @@ function parseToMatchableBlock({
 
       currentHeading = {
         title: headingText,
-        paragraphs: [] as string[],
+        paragraphs: [],
         href: `${parentHref}#${generateHtmlId(headingText)}`,
       };
     }
@@ -139,9 +160,18 @@ function parseToMatchableBlock({
   return headings;
 }
 
-function getNodeTextContent(value: unknown): string {
+/**
+ * Gets the text content of a node.
+ *
+ * @param {unknown} value - The node to get the text content from.
+ * @returns {string} The text content of the node.
+ * @returns {string}
+ */
+function getNodeTextContent(value) {
   return getTextContent(value, {
     includeHtml: false,
     includeImageAlt: false,
   }).replaceAll("\n", " ");
 }
+
+buildSearchIndex();

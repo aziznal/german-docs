@@ -1,4 +1,4 @@
-import { getMarkdownContent } from "@/lib/markdown.utils";
+import { getMarkdownContent } from "@/lib/markdown-utils.mjs";
 import { NextApiRequest, NextApiResponse } from "next";
 
 export default async function handler(

@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { readFileSync } from "fs";
-import { MARKDOWN_SEARCH_INDEX_FILE_PATH } from "@/lib/markdown.utils";
+import { MARKDOWN_SEARCH_INDEX_FILE_PATH } from "@/lib/markdown-utils.mjs";
 
 export async function GET(_request: NextRequest) {
   const searchIndex = readFileSync(MARKDOWN_SEARCH_INDEX_FILE_PATH).toString();

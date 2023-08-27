@@ -1,8 +1,9 @@
-import { cn, generateHtmlId } from "@/lib/utils";
+import { cn } from "@/lib/utils";
 import ReactMarkdown from "react-markdown";
 
 import remarkGfm from "remark-gfm";
 import remarkFrontmatter from "remark-frontmatter";
+import { generateHtmlId } from "@/lib/html-utils.mjs";
 
 /*
  * This component takes in a raw string of markdown and parses it into HTML
