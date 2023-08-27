@@ -47,6 +47,7 @@ export const ParsedMarkdown = ({ children }: { children: string }) => {
           <a
             {...props}
             className={cn("dark:text-foreground", props.className)}
+            target="_blank"
             id={generateHtmlId(props.children.toString())}
           />
         ),
