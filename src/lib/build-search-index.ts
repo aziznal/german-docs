@@ -1,13 +1,20 @@
 import path from "path";
 import { rm, mkdir, writeFile } from "fs/promises";
+
 import { unified } from "unified";
+
 import remarkParse from "remark-parse";
+import remarkStringify from "remark-stringify";
+import remarkFrontmatter from "remark-frontmatter";
+import remarkParseFrontmatter from "remark-parse-frontmatter";
+import { toString as getTextContent } from "mdast-util-to-string";
+
 import { getMarkdownContent, getMarkdownListings } from "./markdown.utils";
 import { generateHtmlId } from "./utils";
-import { toString as getTextContent } from "mdast-util-to-string";
 
 export type BuildResult = {
   pageName: string;
+  tags?: string[];
   headings: {
     title: string;
     paragraphs: string[];
@@ -55,8 +62,11 @@ export async function buildSearchIndex(): Promise<void> {
         parentHref: file.href,
       });
 
+      const frontmatter = getFrontmatter(markdownContent);
+
       return {
-        pageName: file.name,
+        pageName: file.name.replace("-", " "),
+        tags: frontmatter?.tags,
         headings: parsed,
       };
     }),
@@ -71,6 +81,22 @@ export async function buildSearchIndex(): Promise<void> {
 
   await writeFile(MARKDOWN_SEARCH_INDEX_FILE_PATH, searchDb);
 }
+
+type Frontmatter = {
+  title?: string;
+  tags?: string[];
+};
+
+const getFrontmatter = (markdown: string): Frontmatter | null => {
+  return (
+    (unified()
+      .use(remarkParse)
+      .use(remarkFrontmatter)
+      .use(remarkParseFrontmatter)
+      .use(remarkStringify)
+      .processSync(markdown).data?.frontmatter as Frontmatter) ?? null
+  );
+};
 
 function parseToMatchableBlock({
   markdown,

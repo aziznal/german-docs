@@ -46,7 +46,7 @@ export function SearchProvider({ children }: PropsWithChildren) {
 
     setFuseInstance(
       new Fuse(searchIndex, {
-        keys: ["pageName", "headings.title", "headings.paragraphs"],
+        keys: ["pageName", "headings.title", "headings.paragraphs", "tags"],
         includeScore: true,
         threshold: 0.3,
       }),

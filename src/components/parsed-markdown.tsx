@@ -1,6 +1,8 @@
 import { cn, generateHtmlId } from "@/lib/utils";
 import ReactMarkdown from "react-markdown";
+
 import remarkGfm from "remark-gfm";
+import remarkFrontmatter from "remark-frontmatter";
 
 /*
  * This component takes in a raw string of markdown and parses it into HTML
@@ -10,7 +12,7 @@ import remarkGfm from "remark-gfm";
 export const ParsedMarkdown = ({ children }: { children: string }) => {
   return (
     <ReactMarkdown
-      remarkPlugins={[remarkGfm]}
+      remarkPlugins={[remarkGfm, remarkFrontmatter]}
       className="prose prose-sm prose-neutral max-w-none lg:prose-base dark:text-foreground"
       components={{
         h1: ({ node, ...props }) => (

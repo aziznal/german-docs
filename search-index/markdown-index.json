@@ -1,6 +1,11 @@
 [
   {
-    "pageName": "Getting-Started",
+    "pageName": "Getting Started",
+    "tags": [
+      "start",
+      "begin",
+      "help"
+    ],
     "headings": [
       {
         "title": "Getting Started",
@@ -48,7 +53,13 @@
     ]
   },
   {
-    "pageName": "The-Alphabet",
+    "pageName": "The Alphabet",
+    "tags": [
+      "abc",
+      "the abcs",
+      "letters",
+      "competely irrelevant tag"
+    ],
     "headings": [
       {
         "title": "The German Alphabet",
@@ -69,7 +80,7 @@
     ]
   },
   {
-    "pageName": "Perfect-Past",
+    "pageName": "Perfect Past",
     "headings": [
       {
         "title": "Perfect Past",
@@ -79,7 +90,7 @@
     ]
   },
   {
-    "pageName": "Quick-start-to-the-past",
+    "pageName": "Quick start-to-the-past",
     "headings": [
       {
         "title": "Quick Start",
@@ -106,7 +117,7 @@
     ]
   },
   {
-    "pageName": "Reported-Past",
+    "pageName": "Reported Past",
     "headings": [
       {
         "title": "Reported Past",
@@ -118,7 +129,7 @@
     ]
   },
   {
-    "pageName": "Simple-Past",
+    "pageName": "Simple Past",
     "headings": [
       {
         "title": "Simple Past",
@@ -130,7 +141,7 @@
     ]
   },
   {
-    "pageName": "Intro-to-conjugation",
+    "pageName": "Intro to-conjugation",
     "headings": [
       {
         "title": "Conjugation of Verbs",

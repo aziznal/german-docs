@@ -1,3 +1,10 @@
+---
+tags:
+  - start
+  - begin
+  - help
+---
+
 # Getting Started
 
 ## Determining Your Level

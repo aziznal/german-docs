@@ -10,7 +10,9 @@ export async function GET(_request: NextRequest) {
       "content-type": "application/json",
 
       // cache for 1 days
-      "cache-control": "public, max-age=86400, must-revalidate",
+      "cache-control": `public, max-age=${
+        process.env.NODE_ENV === "production" ? "86400" : "0"
+      }, must-revalidate`,
     },
   });
 }

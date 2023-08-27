@@ -4,6 +4,7 @@ import type { Metadata } from "next";
 import { SearchProvider } from "@/providers/search-provider";
 
 import { Analytics } from "@vercel/analytics/react";
+import { buildSearchIndex } from "@/lib/build-search-index";
 
 export const metadata: Metadata = {
   title: "German Docs",
@@ -15,6 +16,8 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  process.env.NODE_ENV === "development" && buildSearchIndex();
+
   return (
     <html
       lang="en"

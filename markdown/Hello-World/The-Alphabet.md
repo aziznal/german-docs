@@ -1,3 +1,11 @@
+---
+tags:
+  - abc
+  - the abcs
+  - letters
+  - competely irrelevant tag
+---
+
 # The German Alphabet
 
 The Alphabet in German is very similar to its English counterpart, with a few exceptions to how letters are pronounced and a few extra letters.
