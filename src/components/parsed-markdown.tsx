@@ -13,7 +13,7 @@ export const ParsedMarkdown = ({ children }: { children: string }) => {
   return (
     <ReactMarkdown
       remarkPlugins={[remarkGfm, remarkFrontmatter]}
-      className="prose prose-sm prose-neutral max-w-none lg:prose-base dark:text-foreground"
+      className="prose prose-neutral max-w-none lg:prose-lg dark:text-foreground"
       components={{
         h1: ({ node, ...props }) => (
           <h1
