@@ -27,7 +27,7 @@ const Header = forwardRef<HTMLElement, HeaderProps>(
         {...props}
         ref={ref}
         className={cn(
-          `sticky top-0 flex shrink-0 basis-[length:var(--header-height)] items-center bg-neutral-900 pr-6 text-white dark:bg-neutral-950 sm:gap-7`,
+          `sticky top-0 flex shrink-0 basis-[var(--header-height)] items-center bg-neutral-900 pr-6 text-white dark:bg-neutral-950 sm:gap-7`,
           className,
         )}
       >
@@ -35,7 +35,7 @@ const Header = forwardRef<HTMLElement, HeaderProps>(
         <div
           className={cn(
             `flex h-full w-[80px] cursor-pointer items-center justify-center px-6 transition-all duration-200 hover:bg-neutral-800 dark:hover:bg-neutral-700`,
-            isLeftSidebarOpen && "lg:w-[length:var(--left-sidebar-width)]",
+            isLeftSidebarOpen && "lg:w-[var(--left-sidebar-width)]",
           )}
           onClick={toggleSidebar}
           id="header-sidebar-toggle"

@@ -42,8 +42,8 @@ const LeftSidebar = forwardRef<HTMLDivElement, LeftSidebarProps>(
         ref={ref}
         {...props}
         className={cn(
-          `fixed top-[length:var(--header-height)] h-[length:var(--left-sidebar-height)] shrink-0 flex-col overflow-y-auto bg-neutral-100 px-6 pb-10 pt-16 transition-all duration-200 dark:bg-neutral-900 lg:sticky lg:flex`,
-          isOpen && "w-[length:var(--left-sidebar-width)]",
+          `fixed top-[var(--header-height)] h-[var(--left-sidebar-height)] shrink-0 flex-col overflow-y-auto bg-neutral-100 px-6 pb-10 pt-16 transition-all duration-200 dark:bg-neutral-900 lg:sticky lg:flex`,
+          isOpen && "w-[var(--left-sidebar-width)]",
           !isOpen && "w-0 flex-shrink overflow-x-hidden px-0",
           className,
         )}
