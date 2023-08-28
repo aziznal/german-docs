@@ -34,7 +34,11 @@ export default function HighlightedLink({
   useEffect(() => {
     if (!pathName) return;
 
-    if (href.includes(pathName)) {
+    if (href.includes(pathName) && pathName !== "/") {
+      setActive(true);
+    }
+
+    if (pathName === "/" && href === "/") {
       setActive(true);
     }
 

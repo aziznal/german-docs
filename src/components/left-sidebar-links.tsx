@@ -38,10 +38,10 @@ export default function LeftSidebarLinks() {
   return (
     <>
       <HighlightedLink
-        href="/introduction"
+        href="/"
         className="text-sm font-bold hover:font-bold"
       >
-        INTRODUCTION
+        WELCOME
       </HighlightedLink>
 
       <Accordion
