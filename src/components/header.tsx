@@ -6,12 +6,8 @@ import { forwardRef } from "react";
 import { cn } from "@/lib/utils";
 import { useLeftSidebarState } from "@/providers/left-sidebar-provider";
 import { useThemeContext } from "@/providers/theme-provider";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
+import { Switch } from "@/components/ui/switch";
+
 import SearchBar from "./searchbar";
 
 type HeaderProps = React.HTMLAttributes<HTMLElement> & {};
@@ -84,28 +80,21 @@ const Header = forwardRef<HTMLElement, HeaderProps>(
         </div>
 
         {/* Theme switcher */}
-        <div className="ml-4 flex items-center justify-center sm:ml-0">
-          <DropdownMenu>
-            <DropdownMenuTrigger id="theme-trigger">
-              {currentTheme === "light" && <Sun />}
-              {currentTheme === "dark" && <Moon />}
-              {currentTheme === "system" && <Moon />}
-            </DropdownMenuTrigger>
+        <div className="ml-4 flex items-center justify-center gap-2 sm:ml-0">
+          <Sun />
 
-            <DropdownMenuContent align="end">
-              <DropdownMenuItem onClick={() => setTheme("dark")}>
-                Dark
-              </DropdownMenuItem>
+          <Switch
+            id="airplane-mode"
+            checked={currentTheme === "dark"}
+            className={cn(
+              currentTheme === "dark" ? "!bg-blue-900" : "!bg-orange-400",
+            )}
+            onCheckedChange={(isDark) => {
+              isDark ? setTheme("dark") : setTheme("light");
+            }}
+          />
 
-              <DropdownMenuItem onClick={() => setTheme("light")}>
-                Light
-              </DropdownMenuItem>
-
-              <DropdownMenuItem onClick={() => setTheme("system")}>
-                System
-              </DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
+          <Moon />
         </div>
       </header>
     );
