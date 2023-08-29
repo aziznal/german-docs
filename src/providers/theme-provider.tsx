@@ -8,15 +8,16 @@ import {
   useState,
 } from "react";
 
-export type Theme = "light" | "dark" | "system";
+import Cookie from "js-cookie";
+import { THEME_COOKIE_KEY } from "@/constants";
 
-const THEME_STORAGE_KEY = "theme";
+export type Theme = "light" | "dark";
 
 export const ThemeContext = createContext<{
   currentTheme: Theme;
   setTheme: (theme: Theme) => void;
 }>({
-  currentTheme: "system",
+  currentTheme: "light",
   setTheme: () => {},
 });
 
@@ -28,24 +29,30 @@ export const useThemeContext = () => useContext(ThemeContext);
 //
 // - whether user preference is dark or light, in which case just use it
 
-function isValidTheme(theme: string): theme is Theme {
-  return theme === "dark" || theme === "light" || theme === "system";
+function isValidTheme(theme: string | undefined): theme is Theme {
+  return theme === "dark" || theme === "light";
 }
 
-export function ThemeProvider({ children }: PropsWithChildren) {
-  const [currentTheme, setCurrentTheme] = useState<Theme>("system");
+export type ThemeProviderProps = PropsWithChildren & {
+  initialTheme?: string;
+};
+
+export function ThemeProvider({ initialTheme, children }: ThemeProviderProps) {
+  const [currentTheme, setCurrentTheme] = useState<Theme>(
+    isValidTheme(initialTheme) ? initialTheme : "light",
+  );
 
   // detect system theme and set it in context
   useEffect(() => {
-    const theme = localStorage.getItem("theme");
+    const theme = Cookie.get(THEME_COOKIE_KEY);
 
     if (!theme || !isValidTheme(theme)) {
-      setCurrentTheme("system");
+      setCurrentTheme("light");
       return;
     }
 
     setCurrentTheme(theme);
-  }, []);
+  }, [initialTheme]);
 
   // update system theme when it changes
   useEffect(() => {
@@ -58,16 +65,10 @@ export function ThemeProvider({ children }: PropsWithChildren) {
       case "light":
         root.classList.remove("dark");
         break;
-      case "system":
-        const media = window.matchMedia("(prefers-color-scheme: dark)");
-        media.matches
-          ? root.classList.add("dark")
-          : root.classList.remove("light");
-        break;
     }
 
     // store theme locally
-    localStorage.setItem(THEME_STORAGE_KEY, currentTheme);
+    Cookie.set(THEME_COOKIE_KEY, currentTheme, { expires: 365 });
   }, [currentTheme]);
 
   return (

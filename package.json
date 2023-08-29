@@ -24,6 +24,7 @@
     "eslint": "8.45.0",
     "eslint-config-next": "13.4.12",
     "fuse.js": "^6.6.2",
+    "js-cookie": "^3.0.5",
     "lucide-react": "^0.263.0",
     "mdast-util-to-string": "^4.0.0",
     "next": "13.4.12",
@@ -44,6 +45,7 @@
   },
   "devDependencies": {
     "@tailwindcss/typography": "^0.5.9",
+    "@types/js-cookie": "^3.0.3",
     "prettier": "^3.0.0",
     "prettier-plugin-tailwindcss": "^0.4.1"
   }
