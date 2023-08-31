@@ -7,7 +7,9 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import HighlightedLink from "@/components/ui/highlighted-link";
+import { unique } from "@/lib/utils";
 import { usePathname } from "next/navigation";
+import { useEffect, useState } from "react";
 
 type Link = {
   name: string;
@@ -55,6 +57,12 @@ export default function LeftSidebarLinks() {
   // used to open the accordion in wihch the current link is active (if it exists)
   const path = getPathFirstSegment(usePathname() ?? undefined) ?? "";
 
+  const [accordionValue, setAccordionValue] = useState<string[]>([path]);
+
+  useEffect(() => {
+    setAccordionValue((currentValues) => unique([...currentValues, path]));
+  }, [path]);
+
   return (
     <>
       <HighlightedLink
@@ -67,24 +75,24 @@ export default function LeftSidebarLinks() {
       <Accordion
         type="multiple"
         className="mt-3 text-sm"
-        defaultValue={[path]}
+        value={accordionValue}
+        onValueChange={(value) => setAccordionValue(value)}
       >
         {links.map((listing) => (
           <AccordionItem
-            id={listing.name}
             value={listing.rootHref}
             key={listing.name}
           >
             <AccordionTrigger
-              className="text-start uppercase"
               id={listing.name}
+              className="text-start uppercase"
               aria-controls="sidebar-links"
             >
               {listing.name}
             </AccordionTrigger>
 
             <AccordionContent
-              id="sidebar-links"
+              id={"sidebar-links" + listing.name}
               aria-labelledby={listing.name}
             >
               <ul className="flex flex-col gap-2 pl-4 text-xs font-normal">
