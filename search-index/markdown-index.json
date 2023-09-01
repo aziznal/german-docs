@@ -58,24 +58,46 @@
       "abc",
       "the abcs",
       "letters",
-      "competely irrelevant tag"
+      "umlaut"
     ],
     "headings": [
       {
         "title": "The German Alphabet",
-        "paragraphs": [
-          "The Alphabet in German is very similar to its English counterpart, with a few exceptions to how letters are pronounced and a few extra letters."
-        ],
+        "paragraphs": [],
         "href": "/Hello-World/The-Alphabet#the-german-alphabet"
       },
       {
-        "title": "The Alphabet",
+        "title": "The Standard Alphabet",
         "paragraphs": [
-          "Though the German alphabet will be listed below, it's highly recommended that you listen to it being pronounced to get a better grasp. Pronouncing letters correctly is not something you should pay too much attention to in the beginning as you will pick it up with time as you learn more vocabulary and start having conversations.",
+          "The Alphabet in German is very similar to its English counterpart, with a few exceptions to how letters are pronounced and a few extra letters.",
+          "It's highly recommended that you listen to it being pronounced to get a better grasp. Pronouncing letters correctly is not something you should pay too much attention to in the beginning as you will pick it up with time as you learn more vocabulary and start having conversations.",
           "I personally watched this video on youtube to learn the pronounciation of many of the letters, once: Link",
-          "Special Chars: ü, ö, ä, ß (eszett)"
+          "You have your usual A -> Z (pronounciation links included for each):",
+          "Notable differences in letter names are:"
         ],
-        "href": "/Hello-World/The-Alphabet#the-alphabet"
+        "href": "/Hello-World/The-Alphabet#the-standard-alphabet"
+      },
+      {
+        "title": "Special Letters",
+        "paragraphs": [
+          "The German language has 3 special letters called Umlaute:",
+          "The two-dot symbol (¨) on top of the previous letters is called an umlaut, hence the name.",
+          "There is also another well-known special letter called the eszett or scharfes S (Sharp S):",
+          "An interesting thing to know about this letter is that there are no words that start with it."
+        ],
+        "href": "/Hello-World/The-Alphabet#special-letters"
+      },
+      {
+        "title": "A different method of writing special letters",
+        "paragraphs": [
+          "Understandably, you may find yourself ignoring the Umlaute while starting out since they are not easy to write on a US Qwery layout keyboard. Nevertheless, you should be aware that changing an umlaut to a non-umlaut in a word could change its meaning completely.",
+          "In short: don't simply convert an umlaut to a non-umlaut while writing a word as that could change the meaning of the word entirely.",
+          "Luckily, there is a compromise.",
+          "In German, if you can't type or write special characters like ä, ö, ü, or ß, there's a workaround. For the umlauted vowels, you can replace them with \"ae,\" \"oe,\" or \"ue,\" known as \"Umlaut Ersatz.\"",
+          "Similarly, the sharp S (ß) can be swapped with \"ss,\" called \"Eszett Ersatz.\"",
+          "You can see examples here"
+        ],
+        "href": "/Hello-World/The-Alphabet#a-different-method-of-writing-special-letters"
       }
     ]
   }
