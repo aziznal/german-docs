@@ -23,7 +23,7 @@ const TableOfContent = forwardRef<HTMLDivElement, TableOfContentProps>(
 
       if (!main) return;
 
-      const headings = Array.from(main.querySelectorAll("h1, h2")).map(
+      const headings = Array.from(main.querySelectorAll("h2")).map(
         (heading) => {
           const id = heading.id;
           const text = heading.textContent;
