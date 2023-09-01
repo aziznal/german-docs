@@ -24,13 +24,18 @@ export default async function handler(
       .status(404)
       .end("Could not find document with path: " + docId);
 
+  const cacheSeconds = process.env.NODE_ENV === "production" ? "3600" : "0";
+
   return (
     response
       .status(200)
       .setHeader("content-type", "text/markdown; charset=utf-8")
 
-      // cache for 1 days
-      .setHeader("cache-control", "public, max-age=86400, must-revalidate")
+      // cache for 1 hour
+      .setHeader(
+        "cache-control",
+        `public, max-age=${cacheSeconds}, must-revalidate`,
+      )
       .send(doc)
   );
 }
