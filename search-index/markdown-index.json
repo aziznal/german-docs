@@ -1,5 +1,48 @@
 [
   {
+    "pageName": "Articles",
+    "tags": [
+      "articles",
+      "der",
+      "die",
+      "das",
+      "ein",
+      "eine",
+      "einen",
+      "einem",
+      "eines"
+    ],
+    "headings": [
+      {
+        "title": "Articles",
+        "paragraphs": [],
+        "href": "/Articles/Articles#articles"
+      },
+      {
+        "title": "What are articles?",
+        "paragraphs": [
+          "Articles are words put before other words to make those words mean something. Latin-based languages are really fond of this.",
+          "There are two main types of articles which you need to know about in german:"
+        ],
+        "href": "/Articles/Articles#what-are-articles"
+      },
+      {
+        "title": "Definite Articles",
+        "paragraphs": [
+          "Der - Die - Das"
+        ],
+        "href": "/Articles/Articles#definite-articles"
+      },
+      {
+        "title": "Indefinite Articles",
+        "paragraphs": [
+          "Ein - Eine - Ein"
+        ],
+        "href": "/Articles/Articles#indefinite-articles"
+      }
+    ]
+  },
+  {
     "pageName": "Genders",
     "tags": [
       "gender",
@@ -14,13 +57,18 @@
     "headings": [
       {
         "title": "Genders (Die Geschlechter)",
+        "paragraphs": [],
+        "href": "/Genders/Genders#genders-die-geschlechter"
+      },
+      {
+        "title": "Grammatical Gender in German",
         "paragraphs": [
           "Nouns in germans have genders. German has three genders in its grammar:",
           "The above list doesn't represent the genders, but rather how the definite articles behave with each gender.",
           "Noun gender is a linguistic category that may not necessarily reflect the biological or social association of a gender as a human might perceive it. A good example of this is the word \"Das Mädchen\" (the girl) which might make sense to use Die instead of Das, but isn't because German do be like that sometimes.",
           "Said differently, just because a noun is \"feminine\" or \"masculine\" to human norms, doesn't mean it's going to match the gender in german, although much of the time, it does (e.g. The Woman = Die Frau)."
         ],
-        "href": "/Genders/Genders#genders-die-geschlechter"
+        "href": "/Genders/Genders#grammatical-gender-in-german"
       },
       {
         "title": "Examples:",
@@ -92,8 +140,8 @@
       {
         "title": "Using the Search",
         "paragraphs": [
-          "The search is still in development. When finished, it'll enable you to find any resource on the website with ease, including the context and page which it is found in.",
-          "You will also be able to see your recent searches as well as favorite searches which you access frequently."
+          "The search feature enables you to find any resource on the website with ease, including the context and page which it can be found on.",
+          "In the future, you will also be able to see your recent searches as well as favorite searches which you access frequently."
         ],
         "href": "/Hello-World/Getting-Started#using-the-search"
       }
@@ -158,40 +206,6 @@
           "You can see examples here"
         ],
         "href": "/Hello-World/The-Alphabet#a-different-method-of-writing-special-letters"
-      }
-    ]
-  },
-  {
-    "pageName": "Articles",
-    "tags": [
-      "articles",
-      "der",
-      "die",
-      "das",
-      "ein",
-      "eine",
-      "einen",
-      "einem",
-      "eines"
-    ],
-    "headings": [
-      {
-        "title": "Articles",
-        "paragraphs": [
-          "Articles are words put before other words to make those words mean something. Latin-based languages are really fond of this.",
-          "There are two main types of articles which you need to know about in german:"
-        ],
-        "href": "/The-Tivs/Articles#articles"
-      },
-      {
-        "title": "The Definite Articles",
-        "paragraphs": [],
-        "href": "/The-Tivs/Articles#the-definite-articles"
-      },
-      {
-        "title": "The Indefinite Articles",
-        "paragraphs": [],
-        "href": "/The-Tivs/Articles#the-indefinite-articles"
       }
     ]
   },
