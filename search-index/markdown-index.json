@@ -5,7 +5,10 @@
       {
         "title": "Genders (Die Geschlechter)",
         "paragraphs": [
-          "Nouns in germans have genders. German has three genders in its grammar:"
+          "Nouns in germans have genders. German has three genders in its grammar:",
+          "The above list doesn't represent the genders, but rather how the definite articles behave with each gender.",
+          "Noun gender is a linguistic category that may not necessarily reflect the biological or social association of a gender as a human might perceive it. A good example of this is the word \"Das Mädchen\" (the girl) which might make sense to use Die instead of Das, but isn't because German do be like that sometimes.",
+          "Although Der refers to masculine things in general, it's not necessarily the case all the time."
         ],
         "href": "/Genders/Genders#genders-die-geschlechter"
       },
@@ -17,11 +20,32 @@
       {
         "title": "Telling the difference",
         "paragraphs": [
-          "Although many methods exist out there to tell the gender of a word, they aren't 100% accurate, so realistically you'll have to memorize a lot of words and then rely on your gut to tell you the gender of any given word.",
+          "Although many methods exist out there to tell the gender of a word, they aren't 100% accurate, so realistically you'll have to memorize a lot of words and then rely on your gut to tell you the gender of any given word. This is something that happens after you've learned a sufficient number of words and you'll feel more confident in your guesses as time goes on.",
           "Even native german speakers have trouble using the correct gender sometimes, so that should tell you something.",
           "Regardless, there are a few methods that help with this. I recommend this video for that: How to know a word's gender | Super Easy German"
         ],
         "href": "/Genders/Genders#telling-the-difference"
+      },
+      {
+        "title": "Gender and Articles",
+        "paragraphs": [
+          "Definite and Indefinite articles change based on grammatical case and gender:"
+        ],
+        "href": "/Genders/Genders#gender-and-articles"
+      },
+      {
+        "title": "Definite Articles",
+        "paragraphs": [
+          "| Article | Nominative | Accusative | Dative | Genitive | | ------- | ---------- | ---------- | ------ | -------- | | Der     | Der        | Den        | Dem    | Des      | | Die     | Die        | Die        | Der    | Der      | | Das     | Das        | Das        | Dem    | Des      |"
+        ],
+        "href": "/Genders/Genders#definite-articles"
+      },
+      {
+        "title": "Indefinite Articles",
+        "paragraphs": [
+          "| Article | Nominative | Accusative | Dative | Genitive | | ------- | ---------- | ---------- | ------ | -------- | | Ein     | Ein        | Einen      | Einem  | Eines    | | Eine    | Eine       | Eine       | Einer  | Einer    | | Ein (N) | Ein        | Ein        | Einem  | Eines    |"
+        ],
+        "href": "/Genders/Genders#indefinite-articles"
       }
     ]
   },
@@ -96,10 +120,10 @@
         "title": "The Standard Alphabet",
         "paragraphs": [
           "The Alphabet in German is very similar to its English counterpart, with a few exceptions to how letters are pronounced and a few extra letters.",
-          "It's highly recommended that you listen to it being pronounced to get a better grasp. Pronouncing letters correctly is not something you should pay too much attention to in the beginning as you will pick it up with time as you learn more vocabulary and start having conversations.",
-          "I personally watched this video on youtube to learn the pronounciation of many of the letters, once: Link",
+          "It's highly recommended that you listen to it being pronounced to get a better grasp. If you have trouble pronouncing a letter then it's not the end of the world and you shouldn't stress about it too much. You will pick it up with time as you learn more vocabulary and start having conversations.",
+          "This video can help with learning the pronounciation of many letters",
           "You have your usual A -> Z (pronounciation links included for each):",
-          "Notable differences in letter names are:"
+          "Notable differences in letter names (compared to English) are:"
         ],
         "href": "/Hello-World/The-Alphabet#the-standard-alphabet"
       },
