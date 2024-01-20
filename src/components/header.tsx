@@ -9,12 +9,15 @@ import { useThemeContext } from "@/providers/theme-provider";
 import { Switch } from "@/components/ui/switch";
 
 import SearchBar from "./searchbar";
+import { useGetPlatform } from "@/hooks/platform";
 
 type HeaderProps = React.HTMLAttributes<HTMLElement> & {};
 
 const Header = forwardRef<HTMLElement, HeaderProps>(
   ({ className, ...props }, ref) => {
     const { isLeftSidebarOpen, toggleSidebar } = useLeftSidebarState();
+
+    const { isMacos } = useGetPlatform();
 
     const { setTheme, currentTheme } = useThemeContext();
 
@@ -35,6 +38,7 @@ const Header = forwardRef<HTMLElement, HeaderProps>(
           )}
           onClick={toggleSidebar}
           id="header-sidebar-toggle"
+          title={isMacos ? "Toggle Sidebar (Cmd+/)" : "Toggle Sidebar (Ctrl+/)"}
         >
           <Menu
             onClick={(event) => {

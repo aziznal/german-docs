@@ -4,14 +4,21 @@ import { forwardRef, useEffect, useRef } from "react";
 import { cn } from "@/lib/utils";
 import { useLeftSidebarState } from "@/providers/left-sidebar-provider";
 import { useTailwindBreakpoints } from "@/hooks/breakpoints";
+import { useGetPlatform } from "@/hooks/platform";
 
 type LeftSidebarProps = React.HTMLAttributes<HTMLDivElement> & {};
 
 const LeftSidebar = forwardRef<HTMLDivElement, LeftSidebarProps>(
   ({ className, children, ...props }, _ref) => {
-    const { isLeftSidebarOpen: isOpen, closeSidebar } = useLeftSidebarState();
+    const {
+      isLeftSidebarOpen: isOpen,
+      closeSidebar,
+      toggleSidebar,
+    } = useLeftSidebarState();
 
     const { isOnSmallScreen } = useTailwindBreakpoints();
+
+    const { isMacos } = useGetPlatform();
 
     const ref = useRef<HTMLDivElement>(null);
 
@@ -36,6 +43,30 @@ const LeftSidebar = forwardRef<HTMLDivElement, LeftSidebarProps>(
         window.removeEventListener("click", closeOnUnfocus);
       };
     }, [isOnSmallScreen, isOpen, closeSidebar]);
+
+    // Toggle on Cmd+/ or Ctrl+/
+    useEffect(() => {
+      const toggleSidebarState = (e: KeyboardEvent) => {
+        // Cmd+/ for macOS
+        if (isMacos && e.key === "/" && e.metaKey) {
+          e.preventDefault();
+          toggleSidebar();
+          return;
+        }
+
+        // Ctrl+/ for Windows/Linux
+        if (e.key === "/" && e.ctrlKey) {
+          e.preventDefault();
+          toggleSidebar();
+        }
+      };
+
+      document.addEventListener("keydown", toggleSidebarState);
+
+      return () => {
+        document.removeEventListener("keydown", toggleSidebarState);
+      };
+    }, [isMacos, toggleSidebar]);
 
     return (
       <div
