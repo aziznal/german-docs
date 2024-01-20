@@ -18,6 +18,15 @@ const TableOfContent = forwardRef<HTMLDivElement, TableOfContentProps>(
     const [headings, setHeadings] = useState<Heading[]>();
     const { activeHeadingId } = useActiveHeadingObserver();
 
+    // used to make sure last clicked heading is always active
+    const [lastClickedHeadingId, setLastClickedHeadingId] = useState<string>();
+
+    // if the observer detects a new active heading, reset the last clicked heading
+    // so the correct heading is active
+    useEffect(() => {
+      setLastClickedHeadingId(undefined);
+    }, [activeHeadingId]);
+
     useEffect(() => {
       const main = document.querySelector("main");
 
@@ -47,12 +56,19 @@ const TableOfContent = forwardRef<HTMLDivElement, TableOfContentProps>(
         {headings &&
           headings.length > 1 &&
           headings.map(({ id, text }) => {
-            const isActive = id === activeHeadingId;
+            const isActive =
+              // active heading is used only when there is no last clicked heading
+              // This works because last clicked heading is reset when a new heading is scrolled into being active
+              id === (!lastClickedHeadingId && activeHeadingId) ||
+              id === lastClickedHeadingId;
 
             return (
               <a
                 key={id}
                 href={`#${id}`}
+                onClick={() => {
+                  setLastClickedHeadingId(id);
+                }}
                 className={cn(
                   "group flex items-start gap-6 text-sm text-neutral-700 hover:text-rose-600 dark:text-foreground dark:hover:text-rose-600",
                   isActive && "font-bold text-rose-600 dark:text-rose-600",
