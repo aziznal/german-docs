@@ -12,6 +12,8 @@ tags:
 
 # Genders (Die Geschlechter)
 
+## Grammatical Gender in German
+
 Nouns in germans have genders. German has three genders in its grammar:
 
 - Der (masculine / männlich)

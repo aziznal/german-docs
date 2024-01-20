@@ -50,13 +50,19 @@ const links: Link[] = [
     ],
   },
   {
-    name: "The Tivs (Grammatical Cases)",
-    rootHref: "/The-Tivs",
+    name: "Articles (Der-Die-Das)",
+    rootHref: "/Articles",
     children: [
       {
         name: "Articles",
-        href: "/The-Tivs/Articles",
+        href: "/Articles/Articles",
       },
+    ],
+  },
+  {
+    name: "The Tivs (Grammatical Cases)",
+    rootHref: "/The-Tivs",
+    children: [
       {
         name: "The Nominative",
         href: "/The-Tivs/The-Nominative",
