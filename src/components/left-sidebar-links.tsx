@@ -8,6 +8,7 @@ import {
 } from "@/components/ui/accordion";
 import HighlightedLink from "@/components/ui/highlighted-link";
 import { unique } from "@/lib/utils";
+import { ChevronsDownUp, ChevronsUpDown } from "lucide-react";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 
@@ -101,12 +102,44 @@ export default function LeftSidebarLinks() {
 
   const [accordionValue, setAccordionValue] = useState<string[]>([path]);
 
+  // open accordion if `path` to a page whose link is in a closed accordion
+  // (e.g. from the search or back button)
   useEffect(() => {
     setAccordionValue((currentValues) => unique([...currentValues, path]));
   }, [path]);
 
+  const openAllAccordions = () => {
+    setAccordionValue(links.map((link) => link.rootHref));
+  };
+
+  const closeAllAccordions = () => {
+    setAccordionValue([]);
+  };
+
   return (
     <>
+      <div className="flex items-center justify-end gap-2">
+        <div
+          className="mb-4 flex w-fit cursor-pointer items-center gap-1 text-xs text-neutral-400 hover:text-rose-600"
+          onClick={openAllAccordions}
+          title="Expand all links"
+        >
+          <span>Expand</span>
+
+          <ChevronsUpDown size={16} />
+        </div>
+
+        <div
+          className="mb-4 flex w-fit cursor-pointer items-center gap-1 text-xs text-neutral-400 hover:text-rose-600"
+          onClick={closeAllAccordions}
+          title="Collapse all links"
+        >
+          <span>Collapse</span>
+
+          <ChevronsDownUp size={16} />
+        </div>
+      </div>
+
       <HighlightedLink
         href="/"
         className="text-sm font-bold hover:font-bold"
@@ -116,7 +149,7 @@ export default function LeftSidebarLinks() {
 
       <Accordion
         type="multiple"
-        className="mt-3 text-sm"
+        className="mt-3 text-sm [&_*]:shrink-0 [&_*]:whitespace-nowrap"
         value={accordionValue}
         onValueChange={(value) => setAccordionValue(value)}
       >
