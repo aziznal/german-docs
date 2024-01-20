@@ -50,18 +50,18 @@ export const NavigationButtons = () => {
     return () => {
       document.removeEventListener("keydown", changePage);
     };
-  }, [isMacos]);
+  }, [isMacos, nextLink, prevLink, router]);
 
   return (
-    <div className="mt-12 flex items-center justify-between">
+    <div className="mt-24 flex items-center justify-between">
       <div>
         {prevLink && (
           <Link
             href={prevLink.href}
-            className="flex items-center gap-1 hover:text-rose-600"
+            className="flex items-center gap-1 hover:text-rose-600 text-lg"
             title={`Shortcut: Cmd + Left Arrow`}
           >
-            <ArrowLeft size={16} />
+            <ArrowLeft size={20} />
             <span>Back to {prevLink.name}</span>
           </Link>
         )}
@@ -71,11 +71,11 @@ export const NavigationButtons = () => {
         {nextLink && (
           <Link
             href={nextLink.href}
-            className="flex items-center gap-1 hover:text-rose-600"
+            className="flex items-center gap-1 hover:text-rose-600 text-lg"
             title={`Shortcut: Cmd + Right Arrow`}
           >
             <span>Next to {nextLink.name}</span>
-            <ArrowRight size={16} />
+            <ArrowRight size={20} />
           </Link>
         )}
       </div>
