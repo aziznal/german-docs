@@ -39,6 +39,42 @@ const links: Link[] = [
       },
     ],
   },
+  {
+    name: "Genders",
+    rootHref: "/Genders",
+    children: [
+      {
+        name: "Genders",
+        href: "/Genders/Genders",
+      },
+    ],
+  },
+  {
+    name: "The Tivs (Grammatical Cases)",
+    rootHref: "/The-Tivs",
+    children: [
+      {
+        name: "Articles",
+        href: "/The-Tivs/Articles",
+      },
+      {
+        name: "The Nominative",
+        href: "/The-Tivs/The-Nominative",
+      },
+      {
+        name: "The Accusative",
+        href: "/The-Tivs/The-Accusative",
+      },
+      {
+        name: "The Dative",
+        href: "/The-Tivs/The-Dative",
+      },
+      {
+        name: "The Genitive",
+        href: "/The-Tivs/The-Genitive",
+      },
+    ],
+  },
 ];
 
 // returns the first part of a path after the first slash.
@@ -95,7 +131,7 @@ export default function LeftSidebarLinks() {
               id={"sidebar-links" + listing.name}
               aria-labelledby={listing.name}
             >
-              <ul className="flex flex-col gap-2 pl-4 text-xs font-normal">
+              <ul className="flex flex-col gap-2 pl-4 font-normal">
                 {listing.children.map((file) => (
                   <HighlightedLink
                     href={file.href}

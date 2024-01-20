@@ -37,7 +37,7 @@
 
     --header-height: 70px;
 
-    --left-sidebar-width: 250px;
+    --left-sidebar-width: 325px;
     --left-sidebar-height: calc(100dvh - var(--header-height));
   }
 

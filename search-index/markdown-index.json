@@ -1,5 +1,31 @@
 [
   {
+    "pageName": "Genders",
+    "headings": [
+      {
+        "title": "Genders (Die Geschlechter)",
+        "paragraphs": [
+          "Nouns in germans have genders. German has three genders in its grammar:"
+        ],
+        "href": "/Genders/Genders#genders-die-geschlechter"
+      },
+      {
+        "title": "Examples:",
+        "paragraphs": [],
+        "href": "/Genders/Genders#examples"
+      },
+      {
+        "title": "Telling the difference",
+        "paragraphs": [
+          "Although many methods exist out there to tell the gender of a word, they aren't 100% accurate, so realistically you'll have to memorize a lot of words and then rely on your gut to tell you the gender of any given word.",
+          "Even native german speakers have trouble using the correct gender sometimes, so that should tell you something.",
+          "Regardless, there are a few methods that help with this. I recommend this video for that: How to know a word's gender | Super Easy German"
+        ],
+        "href": "/Genders/Genders#telling-the-difference"
+      }
+    ]
+  },
+  {
     "pageName": "Getting Started",
     "tags": [
       "start",
@@ -98,6 +124,73 @@
           "You can see examples here"
         ],
         "href": "/Hello-World/The-Alphabet#a-different-method-of-writing-special-letters"
+      }
+    ]
+  },
+  {
+    "pageName": "Articles",
+    "headings": [
+      {
+        "title": "Articles",
+        "paragraphs": [
+          "Articles are words put before other words to make those words mean something. Latin-based languages are really fond of this.",
+          "There are two main types of articles which you need to know about in german:"
+        ],
+        "href": "/The-Tivs/Articles#articles"
+      },
+      {
+        "title": "The Definite Articles",
+        "paragraphs": [],
+        "href": "/The-Tivs/Articles#the-definite-articles"
+      },
+      {
+        "title": "The Indefinite Articles",
+        "paragraphs": [],
+        "href": "/The-Tivs/Articles#the-indefinite-articles"
+      }
+    ]
+  },
+  {
+    "pageName": "The Accusative",
+    "headings": [
+      {
+        "title": "The Accusative",
+        "paragraphs": [
+          "The accusative in german means when you're targeting something in your verb, not as the recipient of an action but more so as the affected entity.",
+          "Accusative causes articles to change into different forms.",
+          "Example:"
+        ],
+        "href": "/The-Tivs/The-Accusative#the-accusative"
+      }
+    ]
+  },
+  {
+    "pageName": "The Dative",
+    "headings": [
+      {
+        "title": "The Dative",
+        "paragraphs": [],
+        "href": "/The-Tivs/The-Dative#the-dative"
+      }
+    ]
+  },
+  {
+    "pageName": "The Genitive",
+    "headings": [
+      {
+        "title": "The Genitive",
+        "paragraphs": [],
+        "href": "/The-Tivs/The-Genitive#the-genitive"
+      }
+    ]
+  },
+  {
+    "pageName": "The Nominative",
+    "headings": [
+      {
+        "title": "The Nominative",
+        "paragraphs": [],
+        "href": "/The-Tivs/The-Nominative#the-nominative"
       }
     ]
   }
