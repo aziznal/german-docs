@@ -1,3 +1,4 @@
+import { NavigationButtons } from "@/components/navigation-buttons";
 import { ParsedMarkdown } from "@/components/parsed-markdown";
 import TableOfContent from "@/components/table-of-content";
 import { redirect } from "next/navigation";
@@ -26,7 +27,11 @@ export default async function MarkdownPage({ params }: PageProps) {
 
   return (
     <div className="mt-20 flex grow gap-24 px-6 pb-20 text-sm text-neutral-700 lg:px-20">
-      <div className="grow">{parsedMarkdown}</div>
+      <div className="grow">
+        {parsedMarkdown}
+
+        <NavigationButtons />
+      </div>
 
       <TableOfContent renderedMarkdown={parsedMarkdown} />
     </div>

@@ -6,6 +6,7 @@ import { Analytics } from "@vercel/analytics/react";
 import { THEME_COOKIE_KEY } from "@/constants";
 import { ThemeProvider } from "@/providers/theme-provider";
 import { cn } from "@/lib/utils";
+import LinksProvider from "@/providers/links-provider";
 
 export const metadata: Metadata = {
   title: "German Docs",
@@ -26,7 +27,9 @@ export default function RootLayout({
     >
       <body className={`h-full font-sans`}>
         <ThemeProvider initialTheme={themeCookie}>
-          <SearchProvider>{children}</SearchProvider>
+          <SearchProvider>
+            <LinksProvider>{children}</LinksProvider>
+          </SearchProvider>
         </ThemeProvider>
 
         <Analytics />

@@ -8,81 +8,10 @@ import {
 } from "@/components/ui/accordion";
 import HighlightedLink from "@/components/ui/highlighted-link";
 import { unique } from "@/lib/utils";
+import { useLinks } from "@/providers/links-provider";
 import { ChevronsDownUp, ChevronsUpDown } from "lucide-react";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-
-type Link = {
-  name: string;
-  rootHref: string;
-  children: {
-    name: string;
-    href: string;
-  }[];
-};
-
-const links: Link[] = [
-  {
-    name: "Hello World",
-    rootHref: "/Hello-World",
-    children: [
-      {
-        name: "Getting Started",
-        href: "/Hello-World/Getting-Started",
-      },
-      {
-        name: "The Alphabet",
-        href: "/Hello-World/The-Alphabet",
-      },
-      {
-        name: "Your Roadmap",
-        href: "/Hello-World/Roadmap",
-      },
-    ],
-  },
-  {
-    name: "Genders",
-    rootHref: "/Genders",
-    children: [
-      {
-        name: "Genders",
-        href: "/Genders/Genders",
-      },
-    ],
-  },
-  {
-    name: "Articles (Der-Die-Das)",
-    rootHref: "/Articles",
-    children: [
-      {
-        name: "Articles",
-        href: "/Articles/Articles",
-      },
-    ],
-  },
-  {
-    name: "The Tivs (Grammatical Cases)",
-    rootHref: "/The-Tivs",
-    children: [
-      {
-        name: "The Nominative",
-        href: "/The-Tivs/The-Nominative",
-      },
-      {
-        name: "The Accusative",
-        href: "/The-Tivs/The-Accusative",
-      },
-      {
-        name: "The Dative",
-        href: "/The-Tivs/The-Dative",
-      },
-      {
-        name: "The Genitive",
-        href: "/The-Tivs/The-Genitive",
-      },
-    ],
-  },
-];
 
 // returns the first part of a path after the first slash.
 //
@@ -99,6 +28,8 @@ function getPathFirstSegment(path?: string): string | null {
 export default function LeftSidebarLinks() {
   // used to open the accordion in wihch the current link is active (if it exists)
   const path = getPathFirstSegment(usePathname() ?? undefined) ?? "";
+
+  const { links } = useLinks();
 
   const [accordionValue, setAccordionValue] = useState<string[]>([path]);
 
