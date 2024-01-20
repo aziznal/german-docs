@@ -1,3 +1,16 @@
+---
+tags:
+  - articles
+  - der
+  - die
+  - das
+  - ein
+  - eine
+  - einen
+  - einem
+  - eines
+---
+
 # Articles
 
 Articles are words put before other words to make those words mean something.

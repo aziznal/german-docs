@@ -143,6 +143,7 @@ export const ParsedMarkdown = ({ children }: { children: string }) => {
               `
                 overflow-clip
                 overflow-ellipsis
+                !px-2
                 text-foreground
             `,
               props.className,
@@ -153,7 +154,7 @@ export const ParsedMarkdown = ({ children }: { children: string }) => {
           <td
             {...props}
             title={props.children.toString()}
-            className={cn(`!p-2`, props.className)}
+            className={cn(`!px-2`, props.className)}
           />
         ),
       }}

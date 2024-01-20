@@ -1,6 +1,16 @@
 [
   {
     "pageName": "Genders",
+    "tags": [
+      "gender",
+      "noun",
+      "masculine",
+      "feminine",
+      "neuter",
+      "der",
+      "die",
+      "das"
+    ],
     "headings": [
       {
         "title": "Genders (Die Geschlechter)",
@@ -34,18 +44,18 @@
         "href": "/Genders/Genders#gender-and-articles"
       },
       {
-        "title": "Definite Articles",
+        "title": "Definite Articles Table",
         "paragraphs": [
           "| Article | Nominative | Accusative | Dative | Genitive | | ------- | ---------- | ---------- | ------ | -------- | | Der     | Der        | Den        | Dem    | Des      | | Die     | Die        | Die        | Der    | Der      | | Das     | Das        | Das        | Dem    | Des      |"
         ],
-        "href": "/Genders/Genders#definite-articles"
+        "href": "/Genders/Genders#definite-articles-table"
       },
       {
-        "title": "Indefinite Articles",
+        "title": "Indefinite Articles Table",
         "paragraphs": [
           "| Article | Nominative | Accusative | Dative | Genitive | | ------- | ---------- | ---------- | ------ | -------- | | Ein     | Ein        | Einen      | Einem  | Eines    | | Eine    | Eine       | Eine       | Einer  | Einer    | | Ein (N) | Ein        | Ein        | Einem  | Eines    |"
         ],
-        "href": "/Genders/Genders#indefinite-articles"
+        "href": "/Genders/Genders#indefinite-articles-table"
       }
     ]
   },
@@ -153,6 +163,17 @@
   },
   {
     "pageName": "Articles",
+    "tags": [
+      "articles",
+      "der",
+      "die",
+      "das",
+      "ein",
+      "eine",
+      "einen",
+      "einem",
+      "eines"
+    ],
     "headings": [
       {
         "title": "Articles",

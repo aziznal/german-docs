@@ -1,3 +1,15 @@
+---
+tags:
+  - gender
+  - noun
+  - masculine
+  - feminine
+  - neuter
+  - der
+  - die
+  - das
+---
+
 # Genders (Die Geschlechter)
 
 Nouns in germans have genders. German has three genders in its grammar:
@@ -16,8 +28,8 @@ or social association of a gender as a human might perceive it. A good example o
 is the word "Das Mädchen" (the girl) which might make sense to use Die instead of
 Das, but isn't because German do be like that sometimes.
 
-Although **Der** refers to masculine things in general, it's not necessarily the case
-all the time.
+Said differently, just because a noun is "feminine" or "masculine" to human norms,
+doesn't mean it's going to match the gender in german, although much of the time, it does (e.g. The Woman = Die Frau).
 
 ### Examples:
 
@@ -45,7 +57,7 @@ Regardless, there are a few methods that help with this. I recommend this video 
 
 Definite and Indefinite articles change based on grammatical case and gender:
 
-### Definite Articles
+### Definite Articles Table
 
 | Article | Nominative | Accusative | Dative | Genitive |
 | ------- | ---------- | ---------- | ------ | -------- |
@@ -53,7 +65,7 @@ Definite and Indefinite articles change based on grammatical case and gender:
 | Die     | Die        | Die        | Der    | Der      |
 | Das     | Das        | Das        | Dem    | Des      |
 
-### Indefinite Articles
+### Indefinite Articles Table
 
 | Article | Nominative | Accusative | Dative | Genitive |
 | ------- | ---------- | ---------- | ------ | -------- |
