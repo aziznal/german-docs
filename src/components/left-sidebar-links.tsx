@@ -112,8 +112,8 @@ export default function LeftSidebarLinks() {
     setAccordionValue(links.map((link) => link.rootHref));
   };
 
-  const closeAllAccordions = () => {
-    setAccordionValue([]);
+  const closeAllAccordionsExceptActive = () => {
+    setAccordionValue([path]);
   };
 
   return (
@@ -131,7 +131,7 @@ export default function LeftSidebarLinks() {
 
         <div
           className="mb-4 flex w-fit cursor-pointer items-center gap-1 text-xs text-neutral-400 hover:text-rose-600"
-          onClick={closeAllAccordions}
+          onClick={closeAllAccordionsExceptActive}
           title="Collapse all links"
         >
           <span>Collapse</span>
