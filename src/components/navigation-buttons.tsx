@@ -58,11 +58,13 @@ export const NavigationButtons = () => {
         {prevLink && (
           <Link
             href={prevLink.href}
-            className="flex items-center gap-1 hover:text-rose-600 text-lg"
+            className="flex items-center gap-1 text-lg hover:text-rose-600"
             title={`Shortcut: Cmd + Left Arrow`}
           >
             <ArrowLeft size={20} />
-            <span>Back to {prevLink.name}</span>
+            <span>
+              Back to <span className="font-bold">{prevLink.name}</span>
+            </span>
           </Link>
         )}
       </div>
@@ -71,10 +73,12 @@ export const NavigationButtons = () => {
         {nextLink && (
           <Link
             href={nextLink.href}
-            className="flex items-center gap-1 hover:text-rose-600 text-lg"
+            className="flex items-center gap-1 text-lg hover:text-rose-600"
             title={`Shortcut: Cmd + Right Arrow`}
           >
-            <span>Next to {nextLink.name}</span>
+            <span>
+              Next to <span className="font-bold">{nextLink.name}</span>
+            </span>
             <ArrowRight size={20} />
           </Link>
         )}
