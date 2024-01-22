@@ -11,6 +11,35 @@ import LinksProvider from "@/providers/links-provider";
 export const metadata: Metadata = {
   title: "German Docs",
   description: "The German language, explained in programmer's English.",
+  openGraph: {
+    title: "German Docs",
+    description: "The German language, explained in programmer's English.",
+    type: "website",
+    locale: "en_US",
+    images: [
+      {
+        url: "https://german-docs.aziznal.com/german-docs-banner.png",
+        type: "image/png",
+        width: 1200,
+        height: 630,
+        alt: "German Docs",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "German Docs",
+    description: "The German language, explained in programmer's English.",
+    images: [
+      {
+        url: "https://german-docs.aziznal.com/german-docs-banner.png",
+        type: "image/png",
+        width: 1200,
+        height: 630,
+        alt: "German Docs",
+      },
+    ],
+  },
 };
 
 export default function RootLayout({
