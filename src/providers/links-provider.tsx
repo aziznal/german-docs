@@ -77,6 +77,10 @@ const defaultLinks: Link[] = [
         name: "The Genitive",
         href: "/The-Tivs/The-Genitive",
       },
+      {
+        name: "Gramatical Cases Cheatsheet",
+        href: "/The-Tivs/Cheatsheet",
+      },
     ],
   },
 ];

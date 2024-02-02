@@ -81,6 +81,28 @@ export const ParsedMarkdown = ({ children }: { children: string }) => {
             id={generateHtmlId(props.children.toString())}
           />
         ),
+        code: ({ node, ...props }) => (
+          <code
+            {...props}
+            className={cn(
+              `
+                dark:bg-neutral-900 
+                dark:text-foreground
+                dark:rounded-md
+                dark:px-1
+                dark:py-0.5
+                dark:font-mono
+                dark:overflow-clip
+                dark:overflow-ellipsis
+                dark:shadow-sm
+                dark:border-neutral-600
+                dark:border-2
+                dark:border-solid
+            `,
+              props.className,
+            )}
+          />
+        ),
         pre: ({ node, ...props }) => (
           <pre
             {...props}
