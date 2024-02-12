@@ -1,3 +1,11 @@
+---
+tags:
+  - shapes
+  - shaped
+  - forms
+  - geometry
+---
+
 # Shapes (Die Form - Die Formen)
 
 The basic forms in german (die Grundformen) include the following:

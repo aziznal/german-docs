@@ -91,6 +91,11 @@ const defaultLinks: Link[] = [
         name: "Shapes",
         href: "/Vocabulary/Shapes",
       },
+
+      {
+        name: "Directions",
+        href: "/Vocabulary/Directions",
+      },
     ],
   },
 ];
