@@ -83,6 +83,16 @@ const defaultLinks: Link[] = [
       },
     ],
   },
+  {
+    name: "Vocabulary",
+    rootHref: "/Vocabulary",
+    children: [
+      {
+        name: "Shapes",
+        href: "/Vocabulary/Shapes",
+      },
+    ],
+  },
 ];
 
 const flattenedLinks = defaultLinks.map((link) => link.children).flat();
