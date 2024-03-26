@@ -84,6 +84,16 @@ const defaultLinks: Link[] = [
     ],
   },
   {
+    name: "Prepositions",
+    rootHref: "/Prepositions",
+    children: [
+      {
+        name: "Prepositions",
+        href: "/Prepositions/Prepositions",
+      },
+    ],
+  },
+  {
     name: "Vocabulary",
     rootHref: "/Vocabulary",
     children: [

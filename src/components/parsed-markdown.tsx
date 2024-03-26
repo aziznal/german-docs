@@ -1,10 +1,11 @@
-import { cn } from "@/lib/utils";
+import { cn, isRootLink } from "@/lib/utils";
 import ReactMarkdown from "react-markdown";
 
 import remarkGfm from "remark-gfm";
 import remarkFrontmatter from "remark-frontmatter";
 import { generateHtmlId } from "@/lib/html-utils.mjs";
 import { ArrowUpRightFromSquare } from "lucide-react";
+import Link from "next/link";
 
 /*
  * This component takes in a raw string of markdown and parses it into HTML
@@ -54,18 +55,19 @@ export const ParsedMarkdown = ({ children }: { children: string }) => {
           />
         ),
         a: ({ node, children, ...props }) => (
-          <a
+          <Link
             {...props}
+            href={props.href ?? "/"}
+            target={isRootLink(props.href) ? "_self" : "_blank"}
             className={cn(
               `mr-1 inline-flex items-center gap-2 text-foreground hover:text-rose-600`,
               props.className,
             )}
-            target="_blank"
             id={generateHtmlId(children.toString())}
           >
             <span>{children}</span>
-            <ArrowUpRightFromSquare />
-          </a>
+            {isRootLink(props.href) ? null : <ArrowUpRightFromSquare />}
+          </Link>
         ),
         strong: ({ node, ...props }) => (
           <strong
@@ -86,18 +88,18 @@ export const ParsedMarkdown = ({ children }: { children: string }) => {
             {...props}
             className={cn(
               `
-                dark:bg-neutral-900 
-                dark:text-foreground
+                dark:overflow-clip 
+                dark:overflow-ellipsis
                 dark:rounded-md
+                dark:border-2
+                dark:border-solid
+                dark:border-neutral-600
+                dark:bg-neutral-900
                 dark:px-1
                 dark:py-0.5
                 dark:font-mono
-                dark:overflow-clip
-                dark:overflow-ellipsis
+                dark:text-foreground
                 dark:shadow-sm
-                dark:border-neutral-600
-                dark:border-2
-                dark:border-solid
             `,
               props.className,
             )}

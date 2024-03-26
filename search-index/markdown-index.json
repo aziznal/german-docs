@@ -149,14 +149,27 @@
   },
   {
     "pageName": "Roadmap",
+    "tags": [
+      "roadmap",
+      "start",
+      "begin",
+      "help"
+    ],
     "headings": [
       {
         "title": "Roadmap",
         "paragraphs": [
-          "While this site is meant as a general reference which anyone can use, there are some concepts which can be associated with a higher priorty due to being more common in everyday speech and increase in ability of expressivness.",
-          "With that in mind, the following could be considered depending on what level you consider yourself to be:"
+          "While this site is meant as a general reference which anyone can use at any time, there are some concepts that are more useful when you're starting out in learning German."
         ],
         "href": "/Hello-World/Roadmap#roadmap"
+      },
+      {
+        "title": "Brace Yourself",
+        "paragraphs": [
+          "Assuming your main language is English, you'll gain the most value from learning the differences between English and German as well as the similarities.",
+          "Here are the top offenders:"
+        ],
+        "href": "/Hello-World/Roadmap#brace-yourself"
       }
     ]
   },
@@ -206,6 +219,21 @@
           "You can see examples here"
         ],
         "href": "/Hello-World/The-Alphabet#a-different-method-of-writing-special-letters"
+      }
+    ]
+  },
+  {
+    "pageName": "Prepositions",
+    "tags": [
+      "prepositions"
+    ],
+    "headings": [
+      {
+        "title": "Prepositions",
+        "paragraphs": [
+          "Coming Soon!"
+        ],
+        "href": "/Prepositions/Prepositions#prepositions"
       }
     ]
   },

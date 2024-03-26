@@ -11,3 +11,9 @@ export function cn(...inputs: ClassValue[]) {
 export function unique<T>(array: T[]): T[] {
   return [...new Set(array)];
 }
+
+export function isRootLink(pathname?: string): boolean {
+  if (!pathname) return false;
+
+  return pathname.startsWith("/");
+}
