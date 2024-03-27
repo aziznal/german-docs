@@ -194,11 +194,11 @@ As with many things in language learning, the best way to understand these is by
 - mangels
 - mittels / mithilfe
 - trotz / ungeachtet
-- um ... willen (uguruna)
+- um ... willen
 - vermöge
 - während
 - wegen
 - zwecks
 - halber
-- in Anbetracht (bakimindan)
+- in Anbetracht
 - zugunsten / zu Gunsten / zu Lasten
