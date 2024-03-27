@@ -7,6 +7,15 @@ import { generateHtmlId } from "@/lib/html-utils.mjs";
 import { ArrowUpRightFromSquare } from "lucide-react";
 import Link from "next/link";
 
+import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
+import theme from "react-syntax-highlighter/dist/esm/styles/prism/a11y-dark";
+
+const getNodeText = (node: any): string | undefined => {
+  if (["string", "number"].includes(typeof node)) return node;
+  if (node instanceof Array) return node.map(getNodeText).join("");
+  if (typeof node === "object" && node) return getNodeText(node.props.children);
+};
+
 /*
  * This component takes in a raw string of markdown and parses it into HTML
  *
@@ -19,10 +28,12 @@ export const ParsedMarkdown = ({ children }: { children: string }) => {
       className={cn(`
           prose
           prose-neutral
-          max-w-none
+
+          max-w-none 
           text-foreground
 
-          lg:prose-lg 
+          lg:prose-lg
+
           dark:text-foreground
       `)}
       components={{
@@ -91,11 +102,8 @@ export const ParsedMarkdown = ({ children }: { children: string }) => {
                 dark:overflow-clip 
                 dark:overflow-ellipsis
                 dark:rounded-md
-                dark:border-2
-                dark:border-solid
                 dark:border-neutral-600
                 dark:bg-neutral-900
-                dark:px-1
                 dark:py-0.5
                 dark:font-mono
                 dark:text-foreground
@@ -106,10 +114,12 @@ export const ParsedMarkdown = ({ children }: { children: string }) => {
           />
         ),
         pre: ({ node, ...props }) => (
-          <pre
-            {...props}
-            className={cn("dark:bg-neutral-900", props.className)}
-          />
+          <SyntaxHighlighter
+            language="shell"
+            style={theme}
+          >
+            {getNodeText(props.children) ?? ""}
+          </SyntaxHighlighter>
         ),
         blockquote: ({ node, ...props }) => (
           <blockquote

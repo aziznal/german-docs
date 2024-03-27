@@ -53,7 +53,7 @@ export const NavigationButtons = () => {
   }, [isMacos, nextLink, prevLink, router]);
 
   return (
-    <div className="mt-24 flex items-center justify-between">
+    <div className="mt-24 flex flex-col gap-4 items-center justify-between lg:flex-row dark:text-neutral-300">
       <div>
         {prevLink && (
           <Link

@@ -307,7 +307,7 @@ const SearchBar = forwardRef<HTMLInputElement, SearchBarProps>(
             </div>
 
             {/* Search results */}
-            <div className="!mr-0 mt-4 flex max-h-[70dvh] min-h-[100px] flex-col gap-6 overflow-y-auto pr-6 lg:max-h-[50vh]">
+            <div className="!mr-0 mt-4 flex max-h-[70dvh] min-h-[100px] flex-col gap-6 overflow-y-auto pr-6 lg:max-h-[50vh] [&_*]:min-h-fit">
               {!searchResults ||
                 (searchResults.length === 0 && (
                   <div className="flex h-full w-full items-center justify-center text-muted-foreground">
@@ -318,7 +318,7 @@ const SearchBar = forwardRef<HTMLInputElement, SearchBarProps>(
               {searchResults.map((searchResult) => {
                 return (
                   <div
-                    className="space-y-3"
+                    className="flex flex-col gap-3"
                     key={searchResult.pageName}
                   >
                     <div className="text-lg font-bold">

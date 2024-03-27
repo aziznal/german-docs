@@ -81,3 +81,8 @@
     @apply bg-background text-foreground;
   }
 }
+
+* {
+  min-width: 0;
+  min-height: 0;
+}
