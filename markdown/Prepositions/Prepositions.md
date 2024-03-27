@@ -143,62 +143,384 @@ As with many things in language learning, the best way to understand these is by
 
 ## Dative
 
-- ab
-- aus
-- außer
-- bei
-- entgegen
-- entsprechend
-- gegenüber
-- gemäß
-- mit
-- nach / je nach
-- nebst / mitsamt
-- nächst
-- seit
-- von
-- zu
-- zuliebe
-- zuwider
-- im Gegensatz zu
-- im Gegenteil zu
-- im Unterschied zu
-- im Vergleich zu / mit
-- im Verhältnis zu
+### **ab**
+
+```bash
+# Starting from tomorrow
+"Ab morgen"
+```
+
+### **aus**
+
+```bash
+# I come from Germany
+"Ich komme aus Deutschland"
+```
+
+### **außer**
+
+```bash
+# Apart from him, everyone was there
+"Außer ihm war jeder da"
+```
+
+### **bei**
+
+```bash
+# At Peter's place
+"Bei Peter"
+```
+
+### **entgegen**
+
+```bash
+# Contrary to expectations
+"Den Erwartungen entgegen"
+```
+
+### **entsprechend**
+
+```bash
+# According to the instructions
+"Den Anweisungen entsprechend"
+```
+
+### **gegenüber**
+
+```bash
+# Opposite the station
+"Gegenüber dem Bahnhof"
+```
+
+### **gemäß**
+
+```bash
+# According to the law
+"Gemäß dem Gesetz"
+```
+
+### **mit**
+
+```bash
+# With a friend
+"Mit einem Freund"
+```
+
+### **nach / je nach**
+
+```bash
+# According to the situation
+"Je nach Situation"
+```
+
+### **nebst / mitsamt**
+
+```bash
+# Along with the accessories
+"Nebst dem Zubehör"
+```
+
+### **nächst**
+
+```bash
+# Next to the church
+"Nächst der Kirche"
+```
+
+### **seit**
+
+```bash
+# Since yesterday
+"Seit gestern"
+```
+
+### **von**
+
+```bash
+# A gift from her
+"Ein Geschenk von ihr"
+```
+
+### **zu**
+
+```bash
+# To the party
+"Zur Party"
+```
+
+### **zuliebe**
+
+```bash
+# For your sake
+"Dir zuliebe"
+```
+
+### **zuwider**
+
+```bash
+# Contrary to the rules
+"Den Regeln zuwider"
+```
+
+### **im Gegensatz zu**
+
+```bash
+# In contrast to you
+"Im Gegensatz zu dir"
+```
+
+### **im Gegenteil zu**
+
+```bash
+# Contrary to popular belief
+"Im Gegenteil zur allgemeinen Meinung"
+```
+
+### **im Unterschied zu**
+
+```bash
+# Unlike in America
+"Im Unterschied zu Amerika"
+```
+
+### **im Vergleich zu / mit**
+
+```bash
+# Compared to last year
+"Im Vergleich zum letzten Jahr"
+```
+
+### **im Verhältnis zu**
+
+```bash
+# Relative to the size
+"Im Verhältnis zur Größe"
+```
 
 ---
 
 ## Genitive
 
-- abseits
-- angesichts
-- anhand
-- anlässlich
-- anstatt, anstelle, statt
-- aufgrund, auf Grund
-- auf Seiten, aufseiten
-- außerhalb, oberhalb, unterhalb
-- beiderseits
-- betreffs
-- bezüglich
-- binnen
-- dieserseits
-- einschließlich
-- gelegentlich
-- hinsichtlich
-- infolge
-- inmitten
-- innerhalb
-- jedenseits
-- kraft
-- mangels
-- mittels / mithilfe
-- trotz / ungeachtet
-- um ... willen
-- vermöge
-- während
-- wegen
-- zwecks
-- halber
-- in Anbetracht
-- zugunsten / zu Gunsten / zu Lasten
+### **abseits**
+
+```bash
+# Away from the road
+"Abseits der Straße"
+```
+
+### **angesichts**
+
+```bash
+# In light of the facts
+"Angesichts der Fakten"
+```
+
+### **anhand**
+
+```bash
+# Based on the example
+"Anhand des Beispiels"
+```
+
+### **anlässlich**
+
+```bash
+# On the occasion of the anniversary
+"Anlässlich des Jubiläums"
+```
+
+### **anstatt / anstelle / statt**
+
+```bash
+# Instead of a gift
+"Anstatt eines Geschenks"
+```
+
+### **aufgrund / auf Grund**
+
+```bash
+# Due to the weather
+"Aufgrund des Wetters"
+```
+
+### **auf Seiten / aufseiten**
+
+```bash
+# On the part of the company
+"Aufseiten des Unternehmens"
+```
+
+### **außerhalb / oberhalb / unterhalb**
+
+```bash
+# Outside of the city
+"Außerhalb der Stadt"
+```
+
+### **beiderseits**
+
+```bash
+# On both sides of the river
+"Beiderseits des Flusses"
+```
+
+### **betreffs**
+
+```bash
+# Regarding the matter
+"Betreffs der Angelegenheit"
+```
+
+### **bezüglich**
+
+```bash
+# Regarding the contract
+"Bezüglich des Vertrags"
+```
+
+### **binnen**
+
+```bash
+# Within a week
+"Binnen einer Woche"
+```
+
+### **dieserseits**
+
+```bash
+# On this side
+"Dieserseits der Linie"
+```
+
+### **einschließlich**
+
+```bash
+# Including the weekend
+"Einschließlich des Wochenendes"
+```
+
+### **gelegentlich**
+
+```bash
+# Occasionally, on the occasion of the fair
+"Gelegentlich der Messe"
+```
+
+### **hinsichtlich**
+
+```bash
+# Regarding the plan
+"Hinsichtlich des Plans"
+```
+
+### **infolge**
+
+```bash
+# As a result of the accident
+"Infolge des Unfalls"
+```
+
+### **inmitten**
+
+```bash
+# In the midst of the forest
+"Inmitten des Waldes"
+```
+
+### **innerhalb**
+
+```bash
+# Within the city limits
+"Innerhalb der Stadtgrenzen"
+```
+
+### **jedenseits**
+
+```bash
+# On the other side of the river
+"Jedenseits des Flusses"
+```
+
+### **kraft**
+
+```bash
+# By virtue of the office
+"Kraft des Amtes"
+```
+
+### **mangels**
+
+```bash
+# Due to lack of evidence
+"Mangels Beweisen"
+```
+
+### **mittels / mithilfe**
+
+```bash
+# By means of a tool
+"Mittels eines Werkzeugs"
+```
+
+### **trotz / ungeachtet**
+
+```bash
+# Despite the rain
+"Trotz des Regens"
+```
+
+### **um ... willen**
+
+```bash
+# For the sake of peace
+"Um des Friedens willen"
+```
+
+### **vermöge**
+
+```bash
+# By virtue of his abilities
+"Vermöge seiner Fähigkeiten"
+```
+
+### **während**
+
+```bash
+# During the meeting
+"Während der Besprechung"
+```
+
+### **wegen**
+
+```bash
+# Because of the delay
+"Wegen der Verzögerung"
+```
+
+### **zwecks**
+
+```bash
+# For the purpose of documentation
+"Zwecks Dokumentation"
+```
+
+### **halber**
+
+```bash
+# For the sake of simplicity
+"Der Einfachheit halber"
+```
+
+### **in Anbetracht**
+
+```bash
+# In consideration of the time
+"In Anbetracht der Zeit"
+```
+
+### **zugunsten / zu Gunsten / zu Lasten**
+
+```bash
+# In favor of the children
+"Zugunsten der Kinder"
+```
